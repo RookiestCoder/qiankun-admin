@@ -1,0 +1,20 @@
+{
+  "name": "qiankun-vue3",
+  "version": "1.0.0",
+  "description": "基于qiankun+vue3.0技术栈实现的前端微应用架构。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm-run-all --parallel start:*",
+    "start:sub-react": "cd sub-react && npm run serve",
+    "start:sub-vue": "cd sub-vue && npm run serve",
+    "start:sub-html": "cd sub-html && npm run serve",
+    "start:main": "cd main && npm run serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
