@@ -1,10 +1,15 @@
 {
   "name": "qiankun-vue3",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "基于qiankun+vue3.0技术栈实现的前端微应用架构。",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "npm-run-all install:* ",
+    "install:main": "cd main && npm install ",
+    "install:sub-react": "cd sub-react && npm install ",
+    "install:sub-vue": "cd sub-vue && npm install ",
+    "install:sub-html": "cd sub-html && npm install ",
     "start": "npm-run-all --parallel start:*",
     "start:sub-react": "cd sub-react && npm run serve",
     "start:sub-vue": "cd sub-vue && npm run serve",

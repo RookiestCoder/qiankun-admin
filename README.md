@@ -10,6 +10,8 @@ npm install
 npm run start
 ```
 
+开发环境node v14.20.0
+
 ## 项目地址
 
 https://github.com/RookiestCoder/qiankun-admin

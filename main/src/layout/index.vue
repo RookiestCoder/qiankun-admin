@@ -4,7 +4,7 @@
     <div class="layout-header">
       <div class="lh-btn" @click="$router.replace('/')">返 回 首 页</div>
       <div class="lh-userinfo">
-        <span @click="handleQuit" class="lhu-quit">退出</span>
+        <span @click="handleQuit" class="lhu-quit">退出登陆</span>
         <span class="lhu-name">
           <el-icon class=""><Avatar /></el-icon> {{ userStore.name }}
         </span>
