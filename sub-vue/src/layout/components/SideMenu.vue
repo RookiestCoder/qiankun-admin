@@ -30,7 +30,6 @@ export default {
         {name: '修改全局参数', path: '/changeGlobalStore',icon:'el-icon-location'},
         {name: '跳转子应用', path: '/junpSubImp',icon:'el-icon-menu'},
         {name: 'aboutVue', path: '/about',icon:'el-icon-document'},
-        {name: '导航四', path: '/about',icon:'el-icon-setting'},
       ]
     };
   },
