@@ -1,6 +1,6 @@
-const path = require('path');
+import path from 'path'
 
-module.exports = {
+export default {
   devServer: {
     port: 5500,
   },
@@ -11,6 +11,9 @@ module.exports = {
     });
 
     config.resolve.alias
-      .set('@', path.resolve(__dirname, 'src'));
+      .set('@', path.resolve(__dirname, 'src'))
+      .set('@qiankun-admin/shared', path.resolve(__dirname, '../packages/shared/src'))
+      .set('@qiankun-admin/theme', path.resolve(__dirname, '../packages/theme/src'))
+      .set('@qiankun-admin/ui', path.resolve(__dirname, '../packages/ui/src'));
   },
 };

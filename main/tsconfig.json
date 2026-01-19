@@ -19,6 +19,24 @@
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "@qiankun-admin/shared": [
+        "../packages/shared/src/index.ts"
+      ],
+      "@qiankun-admin/shared/*": [
+        "../packages/shared/src/*"
+      ],
+      "@qiankun-admin/theme": [
+        "../packages/theme/src/index.ts"
+      ],
+      "@qiankun-admin/theme/*": [
+        "../packages/theme/src/*"
+      ],
+      "@qiankun-admin/ui": [
+        "../packages/ui/src/index.ts"
+      ],
+      "@qiankun-admin/ui/*": [
+        "../packages/ui/src/*"
       ]
     },
     "lib": [

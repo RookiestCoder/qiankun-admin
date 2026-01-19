@@ -1,0 +1,33 @@
+{
+  "name": "@qiankun-admin/shared",
+  "version": "1.0.0",
+  "description": "微前端公共工具模块",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "qiankun",
+    "shared",
+    "utils"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "qiankun": "^2.6.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
+

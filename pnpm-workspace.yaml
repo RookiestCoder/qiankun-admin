@@ -1,0 +1,10 @@
+packages:
+  # 主应用
+  - 'main'
+  # 子应用
+  - 'sub-vue'
+  - 'sub-react'
+  - 'sub-html'
+  # 公共包
+  - 'packages/*'
+

@@ -30,6 +30,11 @@ const routes = [
         name: '跳转子应用',
         component: () => import(/* webpackChunkName: "junpSubImp" */ '../views/junpSubImp/index.vue')
       },
+      {   // Packages 使用示例
+        path: '/packages-demo',
+        name: 'Packages 使用示例',
+        component: () => import(/* webpackChunkName: "packagesDemo" */ '../views/PackagesDemo/index.vue')
+      },
       
       // 其他子路由...
     ],

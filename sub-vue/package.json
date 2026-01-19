@@ -7,6 +7,9 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@qiankun-admin/shared": "workspace:*",
+    "@qiankun-admin/theme": "workspace:*",
+    "@qiankun-admin/ui": "workspace:*",
     "element-ui": "^2.15.14",
     "less": "^4.1.2",
     "less-loader": "^12.2.0",
