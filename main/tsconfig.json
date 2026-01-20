@@ -13,47 +13,18 @@
     "useDefineForClassFields": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": [
-      "webpack-env"
-    ],
+    "types": ["webpack-env"],
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@qiankun-admin/shared": [
-        "../packages/shared/src/index.ts"
-      ],
-      "@qiankun-admin/shared/*": [
-        "../packages/shared/src/*"
-      ],
-      "@qiankun-admin/theme": [
-        "../packages/theme/src/index.ts"
-      ],
-      "@qiankun-admin/theme/*": [
-        "../packages/theme/src/*"
-      ],
-      "@qiankun-admin/ui": [
-        "../packages/ui/src/index.ts"
-      ],
-      "@qiankun-admin/ui/*": [
-        "../packages/ui/src/*"
-      ]
+      "@/*": ["src/*"],
+      "@qiankun-admin/shared": ["../packages/shared/src/index.ts"],
+      "@qiankun-admin/shared/*": ["../packages/shared/src/*"],
+      "@qiankun-admin/theme": ["../packages/theme/src/index.ts"],
+      "@qiankun-admin/theme/*": ["../packages/theme/src/*"],
+      "@qiankun-admin/ui": ["../packages/ui/src/index.ts"],
+      "@qiankun-admin/ui/*": ["../packages/ui/src/*"]
     },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx"],
+  "exclude": ["node_modules"]
 }

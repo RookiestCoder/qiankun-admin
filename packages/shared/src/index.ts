@@ -4,14 +4,13 @@
  */
 
 // 导出工具函数
-export * from './utils'
+export * from './utils';
 
 // 导出类型定义
-export * from './types'
+export * from './types';
 
 // 导出 qiankun 全局状态管理
-export * from './qiankun/globalState'
+export * from './qiankun/globalState';
 
 // 导出常量
-export * from './constants'
-
+export * from './constants';

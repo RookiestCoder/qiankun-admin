@@ -1,0 +1,41 @@
+# 构建产物
+dist/
+build/
+*.tsbuildinfo
+
+# 依赖
+node_modules/
+.pnpm/
+
+# 日志文件
+*.log
+npm-debug.log*
+
+# 锁文件
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# 环境文件
+.env
+.env.local
+.env.*.local
+
+# 编辑器配置
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 包文件
+*.tgz
+*.tar.gz
+
+# 文档
+CHANGELOG.md
+LICENSE
+*.md

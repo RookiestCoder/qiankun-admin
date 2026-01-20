@@ -5,6 +5,5 @@
  * 这里主要放置通用的 UI 工具函数、样式工具等
  */
 
-export * from './utils'
-export * from './types'
-
+export * from './utils';
+export * from './types';

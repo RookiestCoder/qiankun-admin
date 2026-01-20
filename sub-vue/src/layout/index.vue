@@ -14,10 +14,10 @@
   </div>
 </template>
 <script>
-import BreadcrumbVue from "./components/Breadcrumb.vue"; //面包屑
-import SideMenu from "./components/SideMenu.vue"; //左侧菜单
+import BreadcrumbVue from './components/Breadcrumb.vue'; //面包屑
+import SideMenu from './components/SideMenu.vue'; //左侧菜单
 export default {
-  name: "sub-vue-layout",
+  name: 'sub-vue-layout',
   components: {
     SideMenu,
     BreadcrumbVue,
@@ -30,7 +30,7 @@ export default {
   mounted() {},
 };
 </script>
-<style lang="less"  scoped>
+<style lang="less" scoped>
 .sub-vue-layout {
   width: 100%;
   height: 100%;
@@ -47,7 +47,7 @@ export default {
       height: 50px;
       width: 100%;
     }
-    .svl-wrap{
+    .svl-wrap {
       width: 100%;
       height: calc(100% - 50px);
       overflow: scroll;

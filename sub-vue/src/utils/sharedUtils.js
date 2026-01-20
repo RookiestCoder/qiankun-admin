@@ -11,8 +11,8 @@ const {
   isEmpty,
   getUrlParam,
   isQiankun,
-  deepClone
-} = require('@qiankun-admin/shared')
+  deepClone,
+} = require('@qiankun-admin/shared');
 
 // 方式 2：使用 ES6 import（如果配置了支持）
 // import { debounce, formatDate, isEmpty } from '@qiankun-admin/shared'
@@ -21,10 +21,10 @@ const {
  * 防抖搜索函数
  */
 export function createSearchHandler() {
-  return debounce((keyword) => {
-    console.log('搜索关键词:', keyword)
+  return debounce(keyword => {
+    console.log('搜索关键词:', keyword);
     // 执行搜索逻辑
-  }, 300)
+  }, 300);
 }
 
 /**
@@ -32,8 +32,8 @@ export function createSearchHandler() {
  */
 export function createScrollHandler() {
   return throttle(() => {
-    console.log('滚动事件触发')
-  }, 100)
+    console.log('滚动事件触发');
+  }, 100);
 }
 
 /**
@@ -42,7 +42,7 @@ export function createScrollHandler() {
  * @returns {string} 格式化后的日期字符串
  */
 export function formatDateTime(date) {
-  return formatDate(date, 'YYYY-MM-DD HH:mm:ss')
+  return formatDate(date, 'YYYY-MM-DD HH:mm:ss');
 }
 
 /**
@@ -51,7 +51,7 @@ export function formatDateTime(date) {
  * @returns {string} 格式化后的日期字符串
  */
 export function formatDateOnly(date) {
-  return formatDate(date, 'YYYY-MM-DD')
+  return formatDate(date, 'YYYY-MM-DD');
 }
 
 /**
@@ -60,7 +60,7 @@ export function formatDateOnly(date) {
  * @returns {boolean} 是否为空
  */
 export function checkEmpty(value) {
-  return isEmpty(value)
+  return isEmpty(value);
 }
 
 /**
@@ -69,7 +69,7 @@ export function checkEmpty(value) {
  * @returns {string|null} 参数值
  */
 export function getQueryParam(name) {
-  return getUrlParam(name)
+  return getUrlParam(name);
 }
 
 /**
@@ -77,7 +77,7 @@ export function getQueryParam(name) {
  * @returns {boolean} 是否在 qiankun 环境
  */
 export function checkQiankunEnv() {
-  return isQiankun()
+  return isQiankun();
 }
 
 /**
@@ -86,7 +86,5 @@ export function checkQiankunEnv() {
  * @returns {any} 拷贝后的对象
  */
 export function cloneDeep(obj) {
-  return deepClone(obj)
+  return deepClone(obj);
 }
-
-

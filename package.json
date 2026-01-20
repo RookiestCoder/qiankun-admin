@@ -18,7 +18,11 @@
     "clean": "pnpm --recursive exec rm -rf node_modules dist",
     "clean:packages": "pnpm --filter \"./packages/*\" run clean",
     "lint": "pnpm --recursive run lint",
-    "type-check": "pnpm --recursive run type-check"
+    "type-check": "pnpm --recursive run type-check",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky",
+    "commit": "cz"
   },
   "keywords": [
     "qiankun",
@@ -29,11 +33,25 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "prettier": "catalog:",
+    "husky": "catalog:",
+    "lint-staged": "catalog:",
+    "commitizen": "catalog:",
+    "@commitlint/cli": "catalog:",
+    "@commitlint/config-conventional": "catalog:"
   },
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=8.0.0"
   },
-  "packageManager": "pnpm@8.15.0"
+  "packageManager": "pnpm@8.15.0",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue,json,css,scss,md}": "prettier --write"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
 }

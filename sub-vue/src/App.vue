@@ -9,9 +9,9 @@
 export default {
   mounted() {
     if (window.__POWERED_BY_QIANKUN__) {
-      let elements = document.querySelector("#subapp-viewport").childNodes;
+      let elements = document.querySelector('#subapp-viewport').childNodes;
       let childrenNode = elements[0];
-      childrenNode.setAttribute("style", "height:100%;width:100%");
+      childrenNode.setAttribute('style', 'height:100%;width:100%');
     }
   },
 };

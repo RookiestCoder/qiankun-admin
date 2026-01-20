@@ -6,12 +6,7 @@
         <h2>qiankun(Vue3基座)</h2>
       </div>
 
-      <el-form
-        ref="loginFormRef"
-        :model="loginData"
-        :rules="loginRules"
-        class="login-form"
-      >
+      <el-form ref="loginFormRef" :model="loginData" :rules="loginRules" class="login-form">
         <!-- 用户名 -->
         <el-form-item prop="username">
           <div class="lf-item">
@@ -40,10 +35,7 @@
               :prefix-icon="Lock"
             >
               <template #suffix>
-                <div
-                  @click="passwordVisible = !passwordVisible"
-                  style="cursor: pointer"
-                >
+                <div @click="passwordVisible = !passwordVisible" style="cursor: pointer">
                   <el-icon v-show="passwordVisible" class=""><Hide /></el-icon>
                   <el-icon v-show="!passwordVisible" class=""><View /></el-icon>
                 </div>
@@ -54,11 +46,7 @@
 
         <!-- 登录按钮 -->
         <div class="lc-btn">
-          <el-button
-            type="primary"
-            size="large"
-            class=""
-            @click.prevent="handleLogin"
+          <el-button type="primary" size="large" class="" @click.prevent="handleLogin"
             >登陆
           </el-button>
         </div>
@@ -66,12 +54,12 @@
     </el-card>
   </div>
 </template>
-  
-  <script setup lang="ts">
-import { User, View, Hide, Lock } from "@element-plus/icons-vue";
-import { useSettingsStore, useUserStore } from "../../store/index";
-import { computed, onMounted, ref } from "vue";
-import router from "../../router";
+
+<script setup lang="ts">
+import { User, View, Hide, Lock } from '@element-plus/icons-vue';
+import { useSettingsStore, useUserStore } from '../../store/index';
+import { computed, onMounted, ref } from 'vue';
+import router from '../../router';
 
 // const userStore = useUserStore();
 // const settingsStore = useSettingsStore();
@@ -80,27 +68,27 @@ const passwordVisible = ref(false); // 密码是否可见
 const loginFormRef = ref(null); // 登录表单ref
 
 const loginData = ref({
-  username: "admin",
-  password: "123456",
+  username: 'admin',
+  password: '123456',
 });
 
 const loginRules = computed(() => {
-  const prefix = "请输入";
+  const prefix = '请输入';
   return {
     username: [
       {
         required: true,
-        trigger: "blur",
+        trigger: 'blur',
         message: `${prefix}用户名`,
       },
     ],
     password: [
       {
         required: true,
-        trigger: "blur",
+        trigger: 'blur',
         validator: (rule: any, value: any, callback: any) => {
           if (value.length < 6) {
-            callback(new Error("The password can not be less than 6 digits"));
+            callback(new Error('The password can not be less than 6 digits'));
           } else {
             callback();
           }
@@ -115,26 +103,25 @@ const loginRules = computed(() => {
  * 登录
  */
 function handleLogin() {
-  loginFormRef.value.validate((valid) => {
+  loginFormRef.value.validate(valid => {
     if (valid) {
-        history.pushState(null, '/', '/') // 没引入路由，所以不能用路由切换
-        // router.push({ path: "/sub-vue/about" });
+      history.pushState(null, '/', '/'); // 没引入路由，所以不能用路由切换
+      // router.push({ path: "/sub-vue/about" });
     }
   });
 }
 
-onMounted(() => {
-});
+onMounted(() => {});
 </script>
-  
-  <style lang="less" scoped>
+
+<style lang="less" scoped>
 html.dark .login-container {
-  background: url("@/assets/images/login-bg-dark.jpg") no-repeat center right;
+  background: url('@/assets/images/login-bg-dark.jpg') no-repeat center right;
 }
 
 .login-container {
   overflow-y: auto;
-  background: url("@/assets/images/login-bg.jpg") no-repeat center right;
+  background: url('@/assets/images/login-bg.jpg') no-repeat center right;
   width: 100%;
   height: 100%;
   .lc-card {
@@ -166,4 +153,3 @@ html.dark .login-container {
   }
 }
 </style>
-  

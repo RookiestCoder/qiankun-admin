@@ -3,19 +3,15 @@
  * @note 这是 JavaScript 文件，使用的是编译后的 JavaScript 代码
  */
 
-const {
-  getGlobalState,
-  setGlobalState,
-  onGlobalStateChange
-} = require('@qiankun-admin/shared')
+const { getGlobalState, setGlobalState, onGlobalStateChange } = require('@qiankun-admin/shared');
 
 /**
  * 获取全局用户信息
  * @returns {Object|null} 用户信息对象
  */
 export function getGlobalUserInfo() {
-  const state = getGlobalState()
-  return state ? state.userInfo : null
+  const state = getGlobalState();
+  return state ? state.userInfo : null;
 }
 
 /**
@@ -24,8 +20,8 @@ export function getGlobalUserInfo() {
  */
 export function updateGlobalUserInfo(userInfo) {
   setGlobalState({
-    userInfo: userInfo
-  })
+    userInfo: userInfo,
+  });
 }
 
 /**
@@ -33,8 +29,8 @@ export function updateGlobalUserInfo(userInfo) {
  * @returns {Object|null} 路由信息对象
  */
 export function getGlobalRouteInfo() {
-  const state = getGlobalState()
-  return state ? state.routeInfo : null
+  const state = getGlobalState();
+  return state ? state.routeInfo : null;
 }
 
 /**
@@ -46,9 +42,9 @@ export function updateGlobalRouteInfo(currentSub, currentPath) {
   setGlobalState({
     routeInfo: {
       currentSub,
-      currentPath
-    }
-  })
+      currentPath,
+    },
+  });
 }
 
 /**
@@ -57,11 +53,11 @@ export function updateGlobalRouteInfo(currentSub, currentPath) {
  */
 export function watchGlobalState(callback) {
   onGlobalStateChange((state, prev) => {
-    console.log('[sub-vue] 全局状态变化:', state, prev)
+    console.log('[sub-vue] 全局状态变化:', state, prev);
     if (callback && typeof callback === 'function') {
-      callback(state, prev)
+      callback(state, prev);
     }
-  })
+  });
 }
 
 /**
@@ -69,7 +65,5 @@ export function watchGlobalState(callback) {
  * @returns {Object|null} 全局状态对象
  */
 export function getFullGlobalState() {
-  return getGlobalState()
+  return getGlobalState();
 }
-
-

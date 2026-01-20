@@ -18,7 +18,7 @@ export const lightThemeVariables = {
   '--border-color-light': '#e4e7ed',
   '--border-color-lighter': '#ebeef5',
   '--border-color-extra-light': '#f2f6fc',
-} as const
+} as const;
 
 /**
  * 暗色主题变量
@@ -36,7 +36,7 @@ export const darkThemeVariables = {
   '--border-color-light': '#414243',
   '--border-color-lighter': '#363637',
   '--border-color-extra-light': '#2b2b2c',
-} as const
+} as const;
 
 /**
  * 获取主题变量
@@ -44,6 +44,5 @@ export const darkThemeVariables = {
  * @returns 主题变量对象
  */
 export function getThemeVariables(mode: 'light' | 'dark' = 'light') {
-  return mode === 'light' ? lightThemeVariables : darkThemeVariables
+  return mode === 'light' ? lightThemeVariables : darkThemeVariables;
 }
-

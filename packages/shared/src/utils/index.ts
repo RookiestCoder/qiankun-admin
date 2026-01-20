@@ -8,16 +8,19 @@
  * @param wait 等待时间（毫秒）
  * @returns 防抖后的函数
  */
-export function debounce<T extends (...args: any[]) => any>(func: T, wait: number): (...args: Parameters<T>) => void {
-  let timeout: ReturnType<typeof setTimeout> | null = null
+export function debounce<T extends (...args: any[]) => any>(
+  func: T,
+  wait: number
+): (...args: Parameters<T>) => void {
+  let timeout: ReturnType<typeof setTimeout> | null = null;
 
   return function (this: any, ...args: Parameters<T>) {
-    const context = this
-    if (timeout) clearTimeout(timeout)
+    const context = this;
+    if (timeout) clearTimeout(timeout);
     timeout = setTimeout(() => {
-      func.apply(context, args)
-    }, wait)
-  }
+      func.apply(context, args);
+    }, wait);
+  };
 }
 
 /**
@@ -26,30 +29,33 @@ export function debounce<T extends (...args: any[]) => any>(func: T, wait: numbe
  * @param wait 等待时间（毫秒）
  * @returns 节流后的函数
  */
-export function throttle<T extends (...args: any[]) => any>(func: T, wait: number): (...args: Parameters<T>) => void {
-  let timeout: ReturnType<typeof setTimeout> | null = null
-  let previous = 0
+export function throttle<T extends (...args: any[]) => any>(
+  func: T,
+  wait: number
+): (...args: Parameters<T>) => void {
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+  let previous = 0;
 
   return function (this: any, ...args: Parameters<T>) {
-    const context = this
-    const now = Date.now()
-    const remaining = wait - (now - previous)
+    const context = this;
+    const now = Date.now();
+    const remaining = wait - (now - previous);
 
     if (remaining <= 0 || remaining > wait) {
       if (timeout) {
-        clearTimeout(timeout)
-        timeout = null
+        clearTimeout(timeout);
+        timeout = null;
       }
-      previous = now
-      func.apply(context, args)
+      previous = now;
+      func.apply(context, args);
     } else if (!timeout) {
       timeout = setTimeout(() => {
-        previous = Date.now()
-        timeout = null
-        func.apply(context, args)
-      }, remaining)
+        previous = Date.now();
+        timeout = null;
+        func.apply(context, args);
+      }, remaining);
     }
-  }
+  };
 }
 
 /**
@@ -58,19 +64,19 @@ export function throttle<T extends (...args: any[]) => any>(func: T, wait: numbe
  * @returns 拷贝后的对象
  */
 export function deepClone<T>(obj: T): T {
-  if (obj === null || typeof obj !== 'object') return obj
-  if (obj instanceof Date) return new Date(obj.getTime()) as any
-  if (obj instanceof Array) return obj.map(item => deepClone(item)) as any
+  if (obj === null || typeof obj !== 'object') return obj;
+  if (obj instanceof Date) return new Date(obj.getTime()) as any;
+  if (obj instanceof Array) return obj.map(item => deepClone(item)) as any;
   if (typeof obj === 'object') {
-    const clonedObj = {} as T
+    const clonedObj = {} as T;
     for (const key in obj) {
       if (obj.hasOwnProperty(key)) {
-        clonedObj[key] = deepClone(obj[key])
+        clonedObj[key] = deepClone(obj[key]);
       }
     }
-    return clonedObj
+    return clonedObj;
   }
-  return obj
+  return obj;
 }
 
 /**
@@ -80,13 +86,13 @@ export function deepClone<T>(obj: T): T {
  * @returns 格式化后的日期字符串
  */
 export function formatDate(date: Date | number, format = 'YYYY-MM-DD HH:mm:ss'): string {
-  const d = typeof date === 'number' ? new Date(date) : date
-  const year = d.getFullYear()
-  const month = String(d.getMonth() + 1).padStart(2, '0')
-  const day = String(d.getDate()).padStart(2, '0')
-  const hours = String(d.getHours()).padStart(2, '0')
-  const minutes = String(d.getMinutes()).padStart(2, '0')
-  const seconds = String(d.getSeconds()).padStart(2, '0')
+  const d = typeof date === 'number' ? new Date(date) : date;
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  const hours = String(d.getHours()).padStart(2, '0');
+  const minutes = String(d.getMinutes()).padStart(2, '0');
+  const seconds = String(d.getSeconds()).padStart(2, '0');
 
   return format
     .replace('YYYY', String(year))
@@ -94,7 +100,7 @@ export function formatDate(date: Date | number, format = 'YYYY-MM-DD HH:mm:ss'):
     .replace('DD', day)
     .replace('HH', hours)
     .replace('mm', minutes)
-    .replace('ss', seconds)
+    .replace('ss', seconds);
 }
 
 /**
@@ -103,11 +109,11 @@ export function formatDate(date: Date | number, format = 'YYYY-MM-DD HH:mm:ss'):
  * @returns 是否为空
  */
 export function isEmpty(value: any): boolean {
-  if (value === null || value === undefined) return true
-  if (typeof value === 'string' && value.trim() === '') return true
-  if (Array.isArray(value) && value.length === 0) return true
-  if (typeof value === 'object' && Object.keys(value).length === 0) return true
-  return false
+  if (value === null || value === undefined) return true;
+  if (typeof value === 'string' && value.trim() === '') return true;
+  if (Array.isArray(value) && value.length === 0) return true;
+  if (typeof value === 'object' && Object.keys(value).length === 0) return true;
+  return false;
 }
 
 /**
@@ -117,10 +123,10 @@ export function isEmpty(value: any): boolean {
  * @returns 参数值
  */
 export function getUrlParam(name: string, url?: string): string | null {
-  const targetUrl = url || (typeof window !== 'undefined' ? window.location.href : '')
-  const regex = new RegExp('[?&]' + name + '=([^&#]*)', 'i')
-  const match = regex.exec(targetUrl)
-  return match ? decodeURIComponent(match[1]) : null
+  const targetUrl = url || (typeof window !== 'undefined' ? window.location.href : '');
+  const regex = new RegExp('[?&]' + name + '=([^&#]*)', 'i');
+  const match = regex.exec(targetUrl);
+  return match ? decodeURIComponent(match[1]) : null;
 }
 
 /**
@@ -128,6 +134,5 @@ export function getUrlParam(name: string, url?: string): string | null {
  * @returns 是否在 qiankun 环境
  */
 export function isQiankun(): boolean {
-  return typeof window !== 'undefined' && !!(window as any).__POWERED_BY_QIANKUN__
+  return typeof window !== 'undefined' && !!(window as any).__POWERED_BY_QIANKUN__;
 }
-

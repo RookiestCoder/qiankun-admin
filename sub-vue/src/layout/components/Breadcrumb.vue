@@ -1,14 +1,16 @@
 <template>
   <div class="sub-vue-layoutcom-bread">
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="item.path" v-for="(item,index) in breadTree" :key="index">{{item.label}}</el-breadcrumb-item>
+      <el-breadcrumb-item :to="item.path" v-for="(item, index) in breadTree" :key="index">{{
+        item.label
+      }}</el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 </template>
 <script>
-import {mapState} from 'vuex'
+import { mapState } from 'vuex';
 export default {
-  name: "sub-vue-layoutcom-menu",
+  name: 'sub-vue-layoutcom-menu',
   data() {
     return {};
   },
@@ -20,17 +22,16 @@ export default {
     },
   },
   watch: {
-    breadTree:{
-      handler(newVal,oldVal){
-        console.log('newValnewValnewVal',newVal)
+    breadTree: {
+      handler(newVal, oldVal) {
+        console.log('newValnewValnewVal', newVal);
       },
-      deep:true
-    }
+      deep: true,
+    },
   },
   methods: {},
   created() {},
-  mounted() {
-  },
+  mounted() {},
 };
 </script>
 <style lang="less" scoped>

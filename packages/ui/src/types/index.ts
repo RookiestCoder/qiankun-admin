@@ -5,7 +5,7 @@
 /**
  * 尺寸类型
  */
-export type Size = 'small' | 'medium' | 'large'
+export type Size = 'small' | 'medium' | 'large';
 
 /**
  * 位置类型
@@ -22,19 +22,18 @@ export type Placement =
   | 'left-end'
   | 'right'
   | 'right-start'
-  | 'right-end'
+  | 'right-end';
 
 /**
  * 状态类型
  */
-export type Status = 'success' | 'warning' | 'error' | 'info'
+export type Status = 'success' | 'warning' | 'error' | 'info';
 
 /**
  * 加载状态
  */
 export interface LoadingState {
-  loading: boolean
-  error?: Error | null
-  data?: any
+  loading: boolean;
+  error?: Error | null;
+  data?: any;
 }
-

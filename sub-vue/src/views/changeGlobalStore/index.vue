@@ -3,31 +3,28 @@
     修改姓名
     <el-input v-model="input" placeholder="请输入内容"></el-input>
     <div @click="handleSubmit" class="btn">提交修改</div>
-</div>
+  </div>
 </template>
 <script>
 export default {
-    //修改全局store的demo
+  //修改全局store的demo
   name: 'subvue-changeGlobalStore',
-  data () {
+  data() {
     return {
-      input:'',
-    }
+      input: '',
+    };
   },
   methods: {
-    handleSubmit(){
-      this.$setGlobalState({userInfo:{name:this.input?this.input:'张三'}})
+    handleSubmit() {
+      this.$setGlobalState({ userInfo: { name: this.input ? this.input : '张三' } });
     },
   },
-  created () {
-  },
-  mounted () {
-  },
-}
+  created() {},
+  mounted() {},
+};
 </script>
 <style lang="less" scoped>
-
-.subvue-changeGlobalStore{
+.subvue-changeGlobalStore {
   width: 100%;
   height: 100%;
   padding: 20px;
@@ -36,19 +33,17 @@ export default {
   align-items: flex-start;
   justify-content: flex-start;
   line-height: 50px;
-  .btn{
+  .btn {
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100px;
     height: 40px;
-    background-color: #409EFF;
+    background-color: #409eff;
     color: white;
     border-radius: 5px;
     margin-top: 20px;
   }
-
 }
-
 </style>

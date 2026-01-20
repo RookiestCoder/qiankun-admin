@@ -3,18 +3,13 @@
  * @note 这是 JavaScript 文件，使用的是编译后的 JavaScript 代码
  */
 
-const {
-  initTheme,
-  toggleTheme,
-  getCurrentTheme,
-  applyTheme
-} = require('@qiankun-admin/theme')
+const { initTheme, toggleTheme, getCurrentTheme, applyTheme } = require('@qiankun-admin/theme');
 
 /**
  * 初始化主题（在应用启动时调用）
  */
 export function setupTheme() {
-  initTheme()
+  initTheme();
 }
 
 /**
@@ -22,7 +17,7 @@ export function setupTheme() {
  * @returns {string} 切换后的主题模式 'light' | 'dark'
  */
 export function switchTheme() {
-  return toggleTheme()
+  return toggleTheme();
 }
 
 /**
@@ -30,7 +25,7 @@ export function switchTheme() {
  * @returns {string} 当前主题模式 'light' | 'dark'
  */
 export function getTheme() {
-  return getCurrentTheme()
+  return getCurrentTheme();
 }
 
 /**
@@ -38,7 +33,5 @@ export function getTheme() {
  * @param {string} mode 主题模式 'light' | 'dark'
  */
 export function setTheme(mode) {
-  applyTheme(mode)
+  applyTheme(mode);
 }
-
-

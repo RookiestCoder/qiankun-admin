@@ -3,8 +3,8 @@
  * @note 主应用和子应用都可以使用此模块来管理全局状态
  */
 
-import { initGlobalState, MicroAppStateActions } from 'qiankun'
-import type { GlobalState, QiankunActions } from '../types'
+import { initGlobalState, MicroAppStateActions } from 'qiankun';
+import type { GlobalState, QiankunActions } from '../types';
 
 /**
  * 默认全局状态
@@ -18,7 +18,7 @@ export const defaultGlobalState: GlobalState = {
   globalSettings: {},
   // 时间戳
   time: '',
-}
+};
 
 /**
  * 初始化 qiankun 全局状态
@@ -26,10 +26,10 @@ export const defaultGlobalState: GlobalState = {
  * @returns qiankun actions
  */
 export function initQiankunGlobalState(initialState?: Partial<GlobalState>): QiankunActions {
-  const state = { ...defaultGlobalState, ...initialState }
-  const actions = initGlobalState(state) as MicroAppStateActions & QiankunActions
+  const state = { ...defaultGlobalState, ...initialState };
+  const actions = initGlobalState(state) as MicroAppStateActions & QiankunActions;
 
-  return actions
+  return actions;
 }
 
 /**
@@ -38,9 +38,9 @@ export function initQiankunGlobalState(initialState?: Partial<GlobalState>): Qia
  */
 export function getGlobalState(): GlobalState | null {
   if (typeof window !== 'undefined' && (window as any).__POWERED_BY_QIANKUN__) {
-    return (window as any).__QIANKUN_DEVELOPMENT__?.getGlobalState?.() || null
+    return (window as any).__QIANKUN_DEVELOPMENT__?.getGlobalState?.() || null;
   }
-  return null
+  return null;
 }
 
 /**
@@ -50,9 +50,9 @@ export function getGlobalState(): GlobalState | null {
  */
 export function setGlobalState(state: Partial<GlobalState>): boolean {
   if (typeof window !== 'undefined' && (window as any).__POWERED_BY_QIANKUN__) {
-    return (window as any).__QIANKUN_DEVELOPMENT__?.setGlobalState?.(state) || false
+    return (window as any).__QIANKUN_DEVELOPMENT__?.setGlobalState?.(state) || false;
   }
-  return false
+  return false;
 }
 
 /**
@@ -65,7 +65,6 @@ export function onGlobalStateChange(
   immediately = false
 ): void {
   if (typeof window !== 'undefined' && (window as any).__POWERED_BY_QIANKUN__) {
-    ;(window as any).__QIANKUN_DEVELOPMENT__?.onGlobalStateChange?.(callback, immediately)
+    (window as any).__QIANKUN_DEVELOPMENT__?.onGlobalStateChange?.(callback, immediately);
   }
 }
-

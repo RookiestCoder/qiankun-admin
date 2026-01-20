@@ -1,7 +1,7 @@
 <template>
   <div class="sub-vue-layoutcom-menu">
     <div class="svlm-logo">
-      <img src="@/assets/logo.png" alt="">
+      <img src="@/assets/logo.png" alt="" />
       sub-vue
     </div>
     <el-menu
@@ -13,24 +13,29 @@
       text-color="#bfcbd9"
       active-text-color="#409eff"
     >
-    <el-menu-item v-for="(item,index) in routes" :key="index" @click="$router.push(item.path)" :index="item.path">
+      <el-menu-item
+        v-for="(item, index) in routes"
+        :key="index"
+        @click="$router.push(item.path)"
+        :index="item.path"
+      >
         <i class="el-icon-menu"></i>
-        <span slot="title">{{item.name}}</span>
+        <span slot="title">{{ item.name }}</span>
       </el-menu-item>
     </el-menu>
   </div>
 </template>
 <script>
-import {mapState} from 'vuex'
+import { mapState } from 'vuex';
 export default {
-  name: "sub-vue-layoutcom-menu",
+  name: 'sub-vue-layoutcom-menu',
   data() {
     return {
       routes: [
-        {name: '修改全局参数', path: '/changeGlobalStore',icon:'el-icon-location'},
-        {name: '跳转子应用', path: '/junpSubImp',icon:'el-icon-menu'},
-        {name: 'aboutVue', path: '/about',icon:'el-icon-document'},
-      ]
+        { name: '修改全局参数', path: '/changeGlobalStore', icon: 'el-icon-location' },
+        { name: '跳转子应用', path: '/junpSubImp', icon: 'el-icon-menu' },
+        { name: 'aboutVue', path: '/about', icon: 'el-icon-document' },
+      ],
     };
   },
   computed: {
@@ -56,7 +61,7 @@ export default {
 .sub-vue-layoutcom-menu {
   width: 100%;
   height: 100%;
-  .svlm-logo{
+  .svlm-logo {
     height: 80px;
     display: flex;
     justify-content: center;
@@ -64,13 +69,13 @@ export default {
     color: #bfcbd9;
     background-color: #232d3b;
     font-size: 28px;
-    img{
+    img {
       width: 28px;
       margin-right: 10px;
     }
   }
-  ::v-deep{
-    .el-menu{
+  ::v-deep {
+    .el-menu {
       height: calc(100% - 80px);
     }
   }

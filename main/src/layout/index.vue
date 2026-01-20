@@ -8,9 +8,7 @@
         <span class="lhu-name">
           <el-icon class=""><Avatar /></el-icon> {{ userStore.name }}
         </span>
-        <span class="lhu-time"
-          >{{ formattedDate }}&nbsp;&nbsp;{{ weekDate }}</span
-        >
+        <span class="lhu-time">{{ formattedDate }}&nbsp;&nbsp;{{ weekDate }}</span>
       </div>
     </div>
 
@@ -23,26 +21,26 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Avatar } from "@element-plus/icons-vue";
-import { computed, onMounted, ref, watch } from "vue";
-import microApps from "../../micro-app";
-import { useRoute, useRouter } from "vue-router";
-import router from "../router";
-import chooseChild from "./components/chooseChild.vue";
-import childWrap from "./components/childWrap.vue";
-import { registerMicroApps, start, setDefaultMountApp } from "qiankun";
-import { useUserStore } from "..//store/index";
+import { Avatar } from '@element-plus/icons-vue';
+import { computed, onMounted, ref, watch } from 'vue';
+import microApps from '../../micro-app';
+import { useRoute, useRouter } from 'vue-router';
+import router from '../router';
+import chooseChild from './components/chooseChild.vue';
+import childWrap from './components/childWrap.vue';
+import { registerMicroApps, start, setDefaultMountApp } from 'qiankun';
+import { useUserStore } from '..//store/index';
 
 const userStore = useUserStore();
 
 // 监听路由变化，当有microApps中的baseurl时，隐藏选择框
 const route = useRoute();
 const isInChild = computed(() => {
-  return microApps.some((item) => route.path.includes(item.activeRule));
+  return microApps.some(item => route.path.includes(item.activeRule));
 });
 
 //默认打开的地址
-const current = ref("/sub-vue");
+const current = ref('/sub-vue');
 
 //是否显示首页选择框
 const mainChoiceVisiable = ref(true);
@@ -59,20 +57,12 @@ const currentDate = ref(new Date());
 // 使用 computed 创建一个计算属性，格式化日期
 const formattedDate = computed(() => {
   const year = currentDate.value.getFullYear();
-  const month = (currentDate.value.getMonth() + 1).toString().padStart(2, "0");
-  const day = currentDate.value.getDate().toString().padStart(2, "0");
+  const month = (currentDate.value.getMonth() + 1).toString().padStart(2, '0');
+  const day = currentDate.value.getDate().toString().padStart(2, '0');
   return `${year}-${month}-${day}`;
 });
 const weekDate = computed(() => {
-  const daysOfWeek = [
-    "星期日",
-    "星期一",
-    "星期二",
-    "星期三",
-    "星期四",
-    "星期五",
-    "星期六",
-  ];
+  const daysOfWeek = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
   const currentDate = new Date();
   const dayIndex = currentDate.getDay();
   const currentDay = daysOfWeek[dayIndex];
@@ -81,7 +71,7 @@ const weekDate = computed(() => {
 
 //退出登陆
 function handleQuit() {
-  history.pushState(null, "login", "login");
+  history.pushState(null, 'login', 'login');
   // router.push('/login')
 }
 

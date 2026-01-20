@@ -1,11 +1,11 @@
-import path from 'path'
+import path from 'path';
 
 export default {
   devServer: {
     port: 5500,
   },
   chainWebpack: config => {
-    config.plugin('html').tap((args) => {
+    config.plugin('html').tap(args => {
       args[0].title = 'qiankun-test';
       return args;
     });

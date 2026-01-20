@@ -6,13 +6,12 @@
 </template>
 
 <script>
-import layout from "./layout/index.vue";
+import layout from './layout/index.vue';
 export default {
-  name: "main",
+  name: 'main',
   components: { layout },
   data() {
-    return {
-    };
+    return {};
   },
   methods: {},
   created() {},

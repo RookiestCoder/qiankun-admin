@@ -128,32 +128,33 @@ pnpm --filter @qiankun-admin/ui run build
 ### 根目录统一命令 (推荐)
 
 ```bash
-# 并行启动所有应用
-pnpm dev
+# 开发环境
+pnpm dev                    # 并行启动所有应用
+pnpm dev:main              # 主基座
+pnpm dev:sub-vue           # Vue子应用
+pnpm dev:sub-react         # React子应用
+pnpm dev:sub-html          # HTML子应用
 
-# 单独启动应用
-pnpm dev:main          # 主基座
-pnpm dev:sub-vue       # Vue子应用
-pnpm dev:sub-react     # React子应用
-pnpm dev:sub-html      # HTML子应用
+# 代码质量
+pnpm lint                  # ESLint检查
+pnpm type-check           # TypeScript类型检查
+pnpm format               # Prettier格式化
+pnpm format:check         # 检查格式化
 
-# 构建所有项目
-pnpm build
-pnpm build:packages    # 只构建共享包
+# 构建
+pnpm build                # 构建所有项目
+pnpm build:packages       # 只构建共享包
+pnpm build:main           # 构建主基座
+pnpm build:sub-vue        # 构建Vue子应用
+pnpm build:sub-react      # 构建React子应用
+pnpm build:sub-html       # 构建HTML子应用
 
-# 单独构建
-pnpm build:main
-pnpm build:sub-vue
-pnpm build:sub-react
-pnpm build:sub-html
-
-# 代码检查
-pnpm lint              # ESLint检查
-pnpm type-check        # TypeScript类型检查
+# Git提交
+pnpm commit               # 交互式提交 (推荐)
 
 # 清理
-pnpm clean             # 清理所有node_modules和dist
-pnpm clean:packages    # 只清理共享包
+pnpm clean                # 清理所有node_modules和dist
+pnpm clean:packages       # 只清理共享包
 ```
 
 ### 各项目独立命令
@@ -238,6 +239,55 @@ catalog:
 - 跨框架组件抽象
 - 设计系统实现
 
+## 🛠️ 开发工具链
+
+### 代码格式化 (Prettier)
+项目使用 Prettier 统一代码格式，确保代码风格一致。
+
+```bash
+# 格式化所有文件
+pnpm format
+
+# 检查格式化状态
+pnpm format:check
+```
+
+### Git Hooks (Husky + lint-staged)
+- **pre-commit**: 自动运行 ESLint 和 Prettier 修复
+- **commit-msg**: 验证提交信息格式
+
+### 提交规范 (Commitlint + Commitizen)
+项目采用 [Conventional Commits](https://conventionalcommits.org/) 规范。
+
+#### 提交类型
+- `feat`: ✨ 新功能
+- `fix`: 🐛 修复
+- `docs`: 📝 文档
+- `style`: 💄 样式
+- `refactor`: 🔄 重构
+- `perf`: ⚡ 性能优化
+- `test`: ✅ 测试
+- `chore`: 🔧 构建工具
+- `revert`: ⏪ 回滚
+- `build`: 📦 构建
+- `ci`: 🤖 CI
+
+#### 提交示例
+```bash
+feat: 添加用户登录功能
+fix: 修复登录页面样式问题
+docs: 更新README文档
+```
+
+#### 推荐提交方式
+```bash
+# 交互式提交 (推荐)
+pnpm commit
+
+# 或手动提交
+git commit -m "feat: 添加新功能"
+```
+
 ## 🏗️ 架构特点
 
 ### 微前端特性
@@ -253,6 +303,12 @@ catalog:
 3. **原子提交**: 相关更改可在单次提交中完成
 4. **高效构建**: 并行构建和增量构建优化
 5. **团队协作**: 标准化开发流程和工具链
+
+### 开发体验优化
+1. **代码质量保证**: ESLint + Prettier + TypeScript 严格检查
+2. **自动化工作流**: Git Hooks 自动执行代码检查和格式化
+3. **提交规范**: Commitlint 确保提交信息规范化
+4. **并行开发**: 支持多应用同时开发和调试
 
 ## 📚 相关文档
 
