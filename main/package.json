@@ -7,23 +7,23 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "axios": "^1.6.5",
-    "element-plus": "^2.5.0",
-    "pinia": "^2.1.7",
-    "qiankun": "^2.6.3",
-    "vue": "^3.2.13",
-    "vue-router": "^4.3.0",
-    "vuex": "^4.0.0"
+    "axios": "catalog:",
+    "element-plus": "catalog:",
+    "pinia": "catalog:",
+    "qiankun": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:",
+    "vuex": "catalog:"
   },
   "devDependencies": {
-    "@vue/cli-plugin-router": "~5.0.0",
-    "@vue/cli-plugin-typescript": "~5.0.0",
-    "@vue/cli-plugin-vuex": "~5.0.0",
-    "@vue/cli-service": "~5.0.0",
-    "less": "^4.0.0",
-    "less-loader": "^8.0.0",
-    "sass": "^1.26.10",
-    "sass-loader": "^10.0.2",
+    "@vue/cli-plugin-router": "catalog:",
+    "@vue/cli-plugin-typescript": "catalog:",
+    "@vue/cli-plugin-vuex": "catalog:",
+    "@vue/cli-service": "catalog:",
+    "less": "catalog:",
+    "less-loader": "catalog:",
+    "sass": "catalog:",
+    "sass-loader": "catalog:",
     "typescript": "~4.5.5"
   },
   "browserslist": [

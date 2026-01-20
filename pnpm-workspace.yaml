@@ -8,3 +8,53 @@ packages:
   # 公共包
   - 'packages/*'
 
+# 共享依赖版本管理
+catalog:
+  # 微前端框架
+  qiankun: ^2.6.3
+
+  # TypeScript 相关
+  typescript: ^5.6.2
+  '@types/node': ^20.17.6
+
+  # Vue CLI 相关
+  '@vue/cli-service': ~5.0.0
+  '@vue/cli-plugin-router': ~5.0.0
+  '@vue/cli-plugin-vuex': ~5.0.0
+  '@vue/cli-plugin-typescript': ~5.0.0
+
+  # Vue 相关
+  vue: ^3.2.13
+  'vue-router': ^4.3.0
+  vuex: ^4.0.0
+  pinia: ^2.1.7
+
+  # React 相关
+  react: ^18.3.1
+  'react-dom': ^18.3.1
+  '@types/react': ^18.3.12
+  '@types/react-dom': ^18.3.7
+
+  # Vite 相关
+  vite: ^5.4.10
+  '@vitejs/plugin-react': ^4.3.4
+
+  # ESLint 相关
+  eslint: ^9.15.0
+  '@typescript-eslint/eslint-plugin': ^8.15.0
+  '@typescript-eslint/parser': ^8.15.0
+  'eslint-plugin-react-hooks': ^5.0.0
+  'eslint-plugin-react-refresh': ^0.4.16
+
+  # 样式相关
+  less: ^4.0.0
+  'less-loader': ^8.0.0
+  sass: ^1.26.10
+  'sass-loader': ^10.0.2
+
+  # HTTP 客户端
+  axios: ^1.6.5
+
+  # UI 框架
+  'element-plus': ^2.5.0
+

@@ -24,10 +24,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "qiankun": "^2.6.3"
+    "qiankun": "catalog:"
   },
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "catalog:"
   }
 }
 

@@ -18,9 +18,9 @@
     "vuex": "^3.6.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-router": "~5.0.0",
-    "@vue/cli-plugin-vuex": "~5.0.0",
-    "@vue/cli-service": "~5.0.0",
+    "@vue/cli-plugin-router": "catalog:",
+    "@vue/cli-plugin-vuex": "catalog:",
+    "@vue/cli-service": "catalog:",
     "vue-template-compiler": "^2.6.14"
   }
 }
