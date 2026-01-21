@@ -62,16 +62,13 @@ qiankun-admin/
 ## 🚀 快速开始
 
 ### 环境要求
-- Node.js >= 16.0.0
-- pnpm >= 7.0.0 (推荐) 或 npm >= 8.0.0
+- Node.js >= 18.0.0
+- pnpm >= 9.0.0 (支持 Catalog 依赖管理)
 
 ### 安装依赖
 ```bash
-# 安装所有依赖 (推荐使用 pnpm，支持 Catalog)
+# 安装所有依赖
 pnpm install
-
-# 或使用 npm (不支持 Catalog 功能)
-npm install
 ```
 
 ### 启动应用
@@ -79,37 +76,31 @@ npm install
 #### 方式1：分别启动各个应用
 ```bash
 # 1. 启动主基座 (端口: 5500)
-cd main && npm run serve
+cd main && pnpm run serve
 
 # 2. 启动 Vue 子应用 (端口: 8080)
-cd sub-vue && npm run serve
+cd sub-vue && pnpm run serve
 
 # 3. 启动 React 子应用 (端口: 3000)
-cd sub-react && npm run dev
+cd sub-react && pnpm run dev
 
 # 4. 启动 HTML 子应用 (端口: 5504)
-cd sub-html && npm run serve
-```
-
-#### 方式2：使用 concurrently 并行启动 (推荐)
-```bash
-# 在根目录创建启动脚本后执行
-npm run dev:all
+cd sub-html && pnpm run serve
 ```
 
 ### 构建应用
 ```bash
 # 构建主基座
-cd main && npm run build
+cd main && pnpm run build
 
 # 构建 Vue 子应用
-cd sub-vue && npm run build
+cd sub-vue && pnpm run build
 
 # 构建 React 子应用
-cd sub-react && npm run build
+cd sub-react && pnpm run build
 
 # 构建 HTML 子应用
-cd sub-html && npm run build
+cd sub-html && pnpm run build
 ```
 
 ### 构建共享包
@@ -161,13 +152,13 @@ pnpm clean:packages       # 只清理共享包
 
 | 项目 | 开发启动 | 构建 | 代码检查 | 预览 |
 |------|----------|------|----------|------|
-| main | `cd main && npm run serve` | `npm run build` | - | - |
-| sub-vue | `cd sub-vue && npm run serve` | `npm run build` | - | - |
-| sub-react | `cd sub-react && npm run dev` | `npm run build` | `npm run lint` | `npm run preview` |
-| sub-html | `cd sub-html && npm run serve` | `npm run build` | - | - |
-| shared | - | `npm run build` | `npm run type-check` | - |
-| theme | - | `npm run build` | `npm run type-check` | - |
-| ui | - | `npm run build` | `npm run type-check` | - |
+| main | `cd main && pnpm run serve` | `pnpm run build` | - | - |
+| sub-vue | `cd sub-vue && pnpm run serve` | `pnpm run build` | - | - |
+| sub-react | `cd sub-react && pnpm run dev` | `pnpm run build` | `pnpm run lint` | `pnpm run preview` |
+| sub-html | `cd sub-html && pnpm run serve` | `pnpm run build` | - | - |
+| shared | - | `pnpm run build` | `pnpm run type-check` | - |
+| theme | - | `pnpm run build` | `pnpm run type-check` | - |
+| ui | - | `pnpm run build` | `pnpm run type-check` | - |
 
 ## 🌐 访问地址
 
