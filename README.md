@@ -253,7 +253,7 @@ pnpm format:check
 ```
 
 ### Git Hooks (Husky + lint-staged)
-- **pre-commit**: 自动运行 ESLint 和 Prettier 修复
+- **pre-commit**: 自动运行 Prettier 格式化
 - **commit-msg**: 验证提交信息格式
 
 ### 提交规范 (Commitlint + Commitizen)

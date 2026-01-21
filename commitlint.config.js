@@ -27,8 +27,6 @@ module.exports = {
     'subject-full-stop': [2, 'never', '.'],
     // 提交类型后面必须有空格
     'subject-case': [0, 'never'],
-    // 提交类型必须小写
-    'type-case': [2, 'always', 'lower'],
     // 提交类型不能为空
     'type-empty': [2, 'never'],
     // 作用域可以为空
