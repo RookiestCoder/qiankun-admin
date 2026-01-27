@@ -11,7 +11,7 @@ packages:
 # 共享依赖版本管理
 catalog:
   # 微前端框架
-  qiankun: ^2.6.3
+  qiankun: ^2.10.16
 
   # TypeScript 相关
   typescript: ^5.6.2
