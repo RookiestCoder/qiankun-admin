@@ -1,10 +1,10 @@
 packages:
   # 主应用
-  - "main"
+  - "base-vue3"
   # 子应用
-  - "sub-vue"
-  - "sub-react"
-  - "sub-html"
+  - "child-vue2"
+  - "child-vite-react"
+  - "child-html"
   - "vite-child"
   # 公共包
   - "packages/*"
