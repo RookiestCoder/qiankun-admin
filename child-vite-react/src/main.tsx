@@ -28,11 +28,14 @@ function render(props?: Prop) {
     container ? container.querySelector('#sub-react') : document.getElementById('sub-react')
   ) as HTMLElement;
 
+  // 判断是否在 qiankun 环境中
+  const isQiankun = qiankunWindow.__POWERED_BY_QIANKUN__;
+  const routerInstance = isQiankun ? memoryRouter : router;
+
   root = ReactDOM.createRoot(appContainer);
 
   root.render(
     <React.StrictMode>
-      aaaaa
       <Provider store={store}>
         <ConfigProvider
           prefixCls="arv4"
@@ -50,15 +53,32 @@ function render(props?: Prop) {
               </Spin>
             }
           >
-            <RouterProvider router={props?.path ? memoryRouter : router} />
+            <RouterProvider router={routerInstance} />
           </Suspense>
         </ConfigProvider>
       </Provider>
     </React.StrictMode>
   );
 
-  if (props?.path) {
-    memoryRouter.navigate(props.path);
+  // 在 qiankun 环境下，监听路由变化
+  if (isQiankun) {
+    // 初始化路由
+    const initialPath = window.location.pathname.replace('/sub-react', '') || '/';
+    console.log('Initial path:', initialPath);
+    memoryRouter.navigate(initialPath);
+
+    // 监听 popstate 事件（浏览器前进后退）
+    const handlePopState = () => {
+      const path = window.location.pathname.replace('/sub-react', '') || '/';
+      console.log('PopState - Navigating to:', path);
+      memoryRouter.navigate(path);
+    };
+    window.addEventListener('popstate', handlePopState);
+
+    // 保存清理函数
+    (window as any).__SUB_REACT_CLEANUP__ = () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
   }
 }
 
@@ -74,13 +94,25 @@ function changeUserListener(e: Event) {
 
 renderWithQiankun({
   mount: async (props: Prop) => {
+    console.log('qiankun mount with props:', props);
     render(props);
     qiankunWindow.addEventListener('changeUser', changeUserListener);
   },
-  bootstrap() {},
+  bootstrap() {
+    console.log('qiankun bootstrap');
+  },
   unmount: async () => {
+    console.log('qiankun unmount');
     root && root.unmount();
     qiankunWindow.removeEventListener('changeUser', changeUserListener);
+
+    // 清理事件监听
+    if ((window as any).__SUB_REACT_CLEANUP__) {
+      (window as any).__SUB_REACT_CLEANUP__();
+      delete (window as any).__SUB_REACT_CLEANUP__;
+    }
   },
-  update() {},
+  update(props: Prop) {
+    console.log('qiankun update with props:', props);
+  },
 });
