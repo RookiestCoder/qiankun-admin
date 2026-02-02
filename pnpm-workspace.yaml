@@ -5,6 +5,7 @@ packages:
   - "sub-vue"
   - "sub-react"
   - "sub-html"
+  - "vite-child"
   # 公共包
   - "packages/*"
 

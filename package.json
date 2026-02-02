@@ -4,9 +4,9 @@
   "description": "基于qiankun+vue3.0技术栈实现的前端微应用架构。",
   "private": true,
   "scripts": {
-    "dev": "pnpm --parallel --filter \"./main\" --filter \"./sub-*\" run serve",
-    "dev:main": "pnpm --filter main run serve",
-    "dev:sub-vue": "pnpm --filter sub-vue run serve",
+    "dev": "npm-run-all --parallel dev:main dev:sub-*",
+    "dev:main": "pnpm --filter main3 run serve",
+    "dev:sub-vue": "pnpm --filter vue-one run serve",
     "dev:sub-react": "pnpm --filter sub-react run serve",
     "dev:sub-html": "pnpm --filter sub-html run serve",
     "build": "pnpm build:packages && pnpm --recursive --filter \"./main\" --filter \"./sub-*\" run build",

@@ -1,70 +1,86 @@
-import { StrictMode } from 'react';
-import { createRoot, type Root } from 'react-dom/client';
-import './index.css';
-import App from './App.tsx';
-import { AppRouter } from './router';
+import '@/public-path';
+// import '@/reset.css'
+import React, { Suspense } from 'react';
+import ReactDOM from 'react-dom/client';
+import { memoryRouter, router } from '@/router';
+import { RouterProvider } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from '@/stores/store';
+import type { User } from '@/stores/userSlice';
+import { setUser } from '@/stores/userSlice';
+import { renderWithQiankun, qiankunWindow } from 'vite-plugin-qiankun/dist/helper';
+import { ConfigProvider, Spin } from 'antd';
 
-let root: Root | null = null;
-
-type RenderProps = {
+interface Prop {
   container?: HTMLElement;
-};
+  path?: string;
+}
 
-function render(props: RenderProps) {
-  const { container } = props;
-  const dom = (container || document).querySelector('#sub-react');
+let root: null | ReactDOM.Root = null;
 
-  if (!dom) return;
+function render(props?: Prop) {
+  let container: null | HTMLElement = null;
+  if (props && props.container) {
+    container = props.container;
+  }
 
-  root = createRoot(dom as HTMLElement);
+  let appContainer = (
+    container ? container.querySelector('#sub-react') : document.getElementById('sub-react')
+  ) as HTMLElement;
+
+  root = ReactDOM.createRoot(appContainer);
 
   root.render(
-    <StrictMode>
-      <AppRouter>
-        <App />
-      </AppRouter>
-    </StrictMode>
+    <React.StrictMode>
+      aaaaa
+      <Provider store={store}>
+        <ConfigProvider
+          prefixCls="arv4"
+          getPopupContainer={node => {
+            if (node) {
+              return node.parentNode as HTMLElement;
+            }
+            return appContainer;
+          }}
+        >
+          <Suspense
+            fallback={
+              <Spin>
+                <div style={{ width: '100%', height: '200px' }}></div>
+              </Spin>
+            }
+          >
+            <RouterProvider router={props?.path ? memoryRouter : router} />
+          </Suspense>
+        </ConfigProvider>
+      </Provider>
+    </React.StrictMode>
   );
-}
 
-if (!(window as Window & { __POWERED_BY_QIANKUN__?: boolean }).__POWERED_BY_QIANKUN__) {
-  render({});
-}
-
-async function bootstrap() {
-  // NOTE 子应用初始化，只会执行一次
-  console.log('[sub-react] react app bootstraped');
-}
-
-async function mount(props: RenderProps) {
-  console.log('[sub-react] props from main framework', props);
-  render(props);
-}
-
-async function unmount(props: RenderProps) {
-  const { container } = props;
-  const dom = (container || document).querySelector('#root');
-
-  if (root) {
-    root.unmount();
-    root = null;
-  }
-
-  if (dom) {
-    dom.innerHTML = '';
+  if (props?.path) {
+    memoryRouter.navigate(props.path);
   }
 }
 
-(
-  window as Window & {
-    ['sub-react']?: {
-      bootstrap: () => Promise<void>;
-      mount: (p: RenderProps) => Promise<void>;
-      unmount: (p: RenderProps) => Promise<void>;
-    };
-  }
-)['sub-react'] = {
-  bootstrap,
-  mount,
-  unmount,
-};
+if (!qiankunWindow.__POWERED_BY_QIANKUN__) {
+  render();
+}
+
+function changeUserListener(e: Event) {
+  store.dispatch(dispatch => {
+    dispatch(setUser((e as CustomEvent<User>).detail));
+  });
+}
+
+renderWithQiankun({
+  mount: async (props: Prop) => {
+    render(props);
+    qiankunWindow.addEventListener('changeUser', changeUserListener);
+  },
+  bootstrap() {},
+  unmount: async () => {
+    root && root.unmount();
+    qiankunWindow.removeEventListener('changeUser', changeUserListener);
+  },
+  update() {},
+});

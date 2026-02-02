@@ -62,7 +62,7 @@ qiankun-admin/
 ## 🚀 快速开始
 
 ### 环境要求
-- Node.js >= 18.0.0
+- Node.js >= 20.0.0
 - pnpm >= 9.0.0 (支持 Catalog 依赖管理)
 
 ### 安装依赖
