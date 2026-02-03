@@ -216,7 +216,7 @@ export default {
      * 更新路由信息
      */
     updateRouteInfo() {
-      updateGlobalRouteInfo('sub-vue', `packages-demo-${Date.now()}`);
+      updateGlobalRouteInfo('child-vue2', `packages-demo-${Date.now()}`);
       this.loadGlobalState();
     },
 

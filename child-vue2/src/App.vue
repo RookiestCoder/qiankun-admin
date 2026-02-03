@@ -1,5 +1,5 @@
 <template>
-  <div id="sub-vue">
+  <div id="child-vue2">
     <keep-alive>
       <router-view />
     </keep-alive>
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style>
-#sub-vue {
+#child-vue2 {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

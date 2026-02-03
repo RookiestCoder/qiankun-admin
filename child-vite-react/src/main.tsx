@@ -25,7 +25,9 @@ function render(props?: Prop) {
   }
 
   let appContainer = (
-    container ? container.querySelector('#sub-react') : document.getElementById('sub-react')
+    container
+      ? container.querySelector('#child-vite-react')
+      : document.getElementById('child-vite-react')
   ) as HTMLElement;
 
   // 判断是否在 qiankun 环境中
@@ -63,13 +65,13 @@ function render(props?: Prop) {
   // 在 qiankun 环境下，监听路由变化
   if (isQiankun) {
     // 初始化路由
-    const initialPath = window.location.pathname.replace('/sub-react', '') || '/';
+    const initialPath = window.location.pathname.replace('/child-vite-react', '') || '/';
     console.log('Initial path:', initialPath);
     memoryRouter.navigate(initialPath);
 
     // 监听 popstate 事件（浏览器前进后退）
     const handlePopState = () => {
-      const path = window.location.pathname.replace('/sub-react', '') || '/';
+      const path = window.location.pathname.replace('/child-vite-react', '') || '/';
       console.log('PopState - Navigating to:', path);
       memoryRouter.navigate(path);
     };

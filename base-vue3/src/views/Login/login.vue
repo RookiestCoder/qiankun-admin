@@ -106,7 +106,7 @@ function handleLogin() {
   loginFormRef.value.validate(valid => {
     if (valid) {
       history.pushState(null, '/', '/'); // 没引入路由，所以不能用路由切换
-      // router.push({ path: "/sub-vue/about" });
+      // router.push({ path: "/child-vue2/about" });
     }
   });
 }

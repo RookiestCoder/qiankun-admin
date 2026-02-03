@@ -16,7 +16,7 @@ function render(props = {}) {
   Vue.prototype.$setGlobalState = props.setGlobalState;
   const { container, routerBase } = props;
   const router = new VueRouter({
-    base: window.__POWERED_BY_QIANKUN__ ? routerBase : '/sub-vue',
+    base: window.__POWERED_BY_QIANKUN__ ? routerBase : '/child-vue2',
     mode: 'history',
     routes,
   });
@@ -35,7 +35,7 @@ function render(props = {}) {
     router,
     store,
     render: h => h(App),
-  }).$mount(container ? container.querySelector('#sub-vue') : '#sub-vue');
+  }).$mount(container ? container.querySelector('#child-vue2') : '#child-vue2');
 }
 if (!window.__POWERED_BY_QIANKUN__) {
   // 这里是子应用独立运行的环境，实现子应用的登录逻辑

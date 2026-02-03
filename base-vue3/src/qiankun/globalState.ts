@@ -7,7 +7,7 @@ export const globalState = {
   //用户信息
   userInfo: { name: '张三' },
   //路由信息
-  routeInfo: { currentSub: 'sub-vue', currentPath: 'changeGlobalStore' },
+  routeInfo: { currentSub: 'child-vue2', currentPath: 'changeGlobalStore' },
   //全局配置
   globalSettings: {},
   time: '',

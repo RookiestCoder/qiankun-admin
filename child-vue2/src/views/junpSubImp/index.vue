@@ -14,7 +14,7 @@ export default {
   methods: {
     handleJump() {
       this.$setGlobalState({
-        routeInfo: { currentSub: 'sub-react', currentPath: '/123123' },
+        routeInfo: { currentSub: 'child-vite-react', currentPath: '/123123' },
       });
     },
   },

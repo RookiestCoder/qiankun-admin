@@ -11,7 +11,7 @@ VueRouter.prototype.push = function push(location) {
 const routes = [
   {
     path: '/',
-    name: 'sub-vue-layout',
+    name: 'child-vue2-layout',
     component: layout,
     redirect: '/changeGlobalStore',
     children: [

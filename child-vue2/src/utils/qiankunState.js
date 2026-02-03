@@ -53,7 +53,7 @@ export function updateGlobalRouteInfo(currentSub, currentPath) {
  */
 export function watchGlobalState(callback) {
   onGlobalStateChange((state, prev) => {
-    console.log('[sub-vue] 全局状态变化:', state, prev);
+    console.log('[child-vue2] 全局状态变化:', state, prev);
     if (callback && typeof callback === 'function') {
       callback(state, prev);
     }

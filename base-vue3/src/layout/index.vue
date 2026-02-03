@@ -75,7 +75,7 @@ const isInChild = computed(() => {
 });
 
 //默认打开的地址
-const current = ref('/sub-vue');
+const current = ref('/child-vue2');
 
 //是否显示首页选择框
 const mainChoiceVisiable = ref(true);

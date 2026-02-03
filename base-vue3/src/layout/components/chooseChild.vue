@@ -17,7 +17,7 @@
                   <img :src="require(`@/assets/images/${item.icon}`)" alt="" />
                   <div class="icon-shine"></div>
                 </div>
-                <span class="cbi-title">{{ item.name }}</span>
+                <span class="cbi-title">{{ item.displayName || item.name }}</span>
                 <div class="card-footer">
                   <span class="launch-text">点击启动</span>
                   <div class="arrow">→</div>
@@ -28,8 +28,26 @@
             <div class="card-back">
               <div class="card-content">
                 <div class="back-icon">🚀</div>
-                <h3>{{ item.name }}</h3>
+                <h3>{{ item.displayName || item.name }}</h3>
                 <p class="description">微前端子应用</p>
+
+                <div class="tech-stack-section">
+                  <div class="section-title">
+                    <i class="tech-icon">⚙️</i>
+                    <span>技术栈</span>
+                  </div>
+                  <div class="tech-stack-list">
+                    <div
+                      v-for="(tech, techIndex) in item.techStack"
+                      :key="techIndex"
+                      class="tech-item"
+                    >
+                      <span class="tech-name">{{ tech.name }}</span>
+                      <span v-if="tech.version" class="tech-version">{{ tech.version }}</span>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="tech-tags">
                   <span class="tag">Qiankun</span>
                   <span class="tag">{{ getFramework(item.name) }}</span>
@@ -58,7 +76,7 @@ const watchedValue2 = ref(routeInfo.currentPath);
 watch(
   [() => routeInfo.currentSub, () => routeInfo.currentPath],
   ([newValue1, newValue2], [oldValue1, oldValue2]) => {
-    if (newValue1 == 'sub-react') {
+    if (newValue1 == 'child-vite-react') {
       goto(microApps[1]);
     }
   }
@@ -301,6 +319,10 @@ function getFramework(name: string) {
             background-clip: text;
             margin-bottom: 20px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
 
           .card-footer {
@@ -334,26 +356,86 @@ function getFramework(name: string) {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 40px;
+          padding: 30px;
           color: white;
 
           .back-icon {
-            font-size: 80px;
-            margin-bottom: 20px;
+            font-size: 60px;
+            margin-bottom: 15px;
             animation: float 3s ease-in-out infinite;
           }
 
           h3 {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            white-space: nowrap;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
 
           .description {
-            font-size: 16px;
+            font-size: 14px;
             opacity: 0.9;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+          }
+
+          .tech-stack-section {
+            width: 100%;
+            margin-bottom: 20px;
+
+            .section-title {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 8px;
+              font-size: 14px;
+              font-weight: 600;
+              margin-bottom: 12px;
+              opacity: 0.95;
+
+              .tech-icon {
+                font-size: 16px;
+              }
+            }
+
+            .tech-stack-list {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 8px;
+              width: 100%;
+
+              .tech-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 8px 12px;
+                background: rgba(255, 255, 255, 0.15);
+                border-radius: 8px;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                transition: all 0.3s ease;
+
+                &:hover {
+                  background: rgba(255, 255, 255, 0.25);
+                  transform: translateY(-2px);
+                }
+
+                .tech-name {
+                  font-size: 13px;
+                  font-weight: 600;
+                  margin-bottom: 2px;
+                }
+
+                .tech-version {
+                  font-size: 11px;
+                  opacity: 0.8;
+                  color: rgba(255, 255, 255, 0.9);
+                }
+              }
+            }
           }
 
           .tech-tags {
@@ -361,10 +443,10 @@ function getFramework(name: string) {
             gap: 10px;
 
             .tag {
-              padding: 8px 16px;
+              padding: 6px 14px;
               background: rgba(255, 255, 255, 0.2);
               border-radius: 20px;
-              font-size: 14px;
+              font-size: 12px;
               font-weight: 500;
               backdrop-filter: blur(10px);
               border: 1px solid rgba(255, 255, 255, 0.3);
