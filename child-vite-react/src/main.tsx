@@ -1,5 +1,5 @@
 import '@/public-path';
-// import '@/reset.css'
+import '@/global.css';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { memoryRouter, router } from '@/router';
@@ -29,6 +29,12 @@ function render(props?: Prop) {
       ? container.querySelector('#child-vite-react')
       : document.getElementById('child-vite-react')
   ) as HTMLElement;
+
+  // 确保容器高度为 100%
+  if (appContainer) {
+    appContainer.style.width = '100%';
+    appContainer.style.height = '100%';
+  }
 
   // 判断是否在 qiankun 环境中
   const isQiankun = qiankunWindow.__POWERED_BY_QIANKUN__;

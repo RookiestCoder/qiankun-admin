@@ -8,7 +8,7 @@
 <style lang="less" scoped>
 .main-layout-childWrap {
   width: 100%;
-  height: calc(100% - 50px);
+  height: calc(100% - 70px);
   #subapp-viewport {
     width: 100%;
     height: 100%;

@@ -1,6 +1,7 @@
 import { lazy } from 'react';
-import { createHashRouter, createMemoryRouter, Outlet, RouteObject } from 'react-router-dom';
+import { createHashRouter, createMemoryRouter, RouteObject } from 'react-router-dom';
 import { qiankunWindow } from 'vite-plugin-qiankun/dist/helper';
+import Layout from '@/layout';
 
 const CommunicationTest = lazy(() => import('@/views/CommunicationTest'));
 const NavigateView = lazy(() => import('@/views/NavigateView'));
@@ -12,7 +13,7 @@ const hashBasename = '/';
 const routes: RouteObject[] = [
   {
     path: '/',
-    element: <Outlet />,
+    element: <Layout />,
     children: [
       { index: true, element: <CommunicationTest /> },
       {

@@ -1,0 +1,126 @@
+.navigate-view-page {
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+
+  .page-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 25px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+    color: white;
+
+    .header-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+      backdrop-filter: blur(10px);
+
+      .anticon {
+        font-size: 28px;
+      }
+    }
+
+    .header-content {
+      h2 {
+        margin: 0 0 8px 0;
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      p {
+        margin: 0;
+        font-size: 14px;
+        opacity: 0.9;
+      }
+    }
+  }
+
+  .content-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-title {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      font-weight: 600;
+      color: #303133;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #f0f0f0;
+
+      .title-icon {
+        font-size: 24px;
+        margin-right: 10px;
+      }
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+
+      .nav-button {
+        height: 56px;
+        font-size: 15px;
+        font-weight: 500;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        &:active {
+          transform: translateY(-1px);
+        }
+      }
+    }
+
+    .info-box {
+      display: flex;
+      align-items: flex-start;
+      padding: 15px 20px;
+      background: linear-gradient(135deg, #f0f4ff 0%, #f5f7fa 100%);
+      border-radius: 10px;
+      border-left: 4px solid #667eea;
+
+      .info-icon {
+        font-size: 24px;
+        margin-right: 12px;
+        flex-shrink: 0;
+      }
+
+      .info-text {
+        font-size: 14px;
+        color: #606266;
+        line-height: 1.6;
+
+        strong {
+          color: #667eea;
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+}
