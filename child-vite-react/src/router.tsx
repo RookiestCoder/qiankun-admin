@@ -6,6 +6,7 @@ import Layout from '@/layout';
 const CommunicationTest = lazy(() => import('@/views/CommunicationTest'));
 const NavigateView = lazy(() => import('@/views/NavigateView'));
 const TabView = lazy(() => import('@/views/TabView'));
+const WebComponentsDemo = lazy(() => import('@/views/WebComponentsDemo'));
 
 // HashRouter 使用 basename，MemoryRouter 不需要（qiankun 会处理路径）
 const hashBasename = '/';
@@ -27,6 +28,10 @@ const routes: RouteObject[] = [
       {
         path: 'tab-view',
         element: <TabView />,
+      },
+      {
+        path: 'web-components-demo',
+        element: <WebComponentsDemo />,
       },
     ],
   },

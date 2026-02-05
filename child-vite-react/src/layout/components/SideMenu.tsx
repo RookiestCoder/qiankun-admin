@@ -1,6 +1,6 @@
 import { Menu } from 'antd';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { EditOutlined, CompassOutlined, AppstoreOutlined } from '@ant-design/icons';
+import { EditOutlined, CompassOutlined, AppstoreOutlined, CodeOutlined } from '@ant-design/icons';
 import './SideMenu.less';
 
 const menuItems = [
@@ -18,6 +18,11 @@ const menuItems = [
     key: '/tab-view',
     icon: <AppstoreOutlined />,
     label: 'Tab 视图',
+  },
+  {
+    key: '/web-components-demo',
+    icon: <CodeOutlined />,
+    label: 'Web Components 案例',
   },
 ];
 

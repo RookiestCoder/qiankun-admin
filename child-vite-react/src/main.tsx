@@ -11,6 +11,11 @@ import { setUser } from '@/stores/userSlice';
 import { renderWithQiankun, qiankunWindow } from 'vite-plugin-qiankun/dist/helper';
 import { ConfigProvider, Spin } from 'antd';
 
+// 全局注册 Web Components 按钮组件
+import { registerButton } from '@qiankun-admin/ui';
+registerButton('qk-button');
+console.log('[child-vite-react] Web Components 按钮组件已全局注册');
+
 interface Prop {
   container?: HTMLElement;
   path?: string;
