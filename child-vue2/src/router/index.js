@@ -43,6 +43,21 @@ const routes = [
         component: () =>
           import(/* webpackChunkName: "packagesDemo" */ '../views/PackagesDemo/index.vue'),
       },
+      {
+        // Web Components 案例
+        path: '/web-components-demo',
+        name: 'Web Components 案例',
+        component: () =>
+          import(
+            /* webpackChunkName: "webComponentsDemo" */ '../views/WebComponentsDemo/index.vue'
+          ).catch(err => {
+            console.error('Failed to load WebComponentsDemo component:', err);
+            // 返回一个简单的错误组件，避免路由失败
+            return {
+              template: '<div>组件加载失败，请检查控制台错误信息</div>',
+            };
+          }),
+      },
 
       // 其他子路由...
     ],

@@ -1,9 +1,7 @@
 /**
  * @desc UI 模块入口文件
- * @note 由于微前端项目可能使用不同框架（Vue、React），
- * 建议将框架特定的组件放在各自的子应用中，
- * 这里主要放置通用的 UI 工具函数、样式工具等
+ * @note 主要提供 Web Components 组件，可在任何框架中使用
  */
 
-export * from './utils';
-export * from './types';
+export type { Size } from './types';
+export { registerButton, ButtonElement } from './components/Button';

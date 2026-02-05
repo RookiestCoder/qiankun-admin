@@ -2,6 +2,8 @@ import './public-path';
 import Vue from 'vue';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+// 注意：Web Components 的样式会自动注入到 Shadow DOM 中，不需要手动引入
+// import '@qiankun-admin/ui/dist/style.css';
 import App from './App.vue';
 import routes from './router';
 // import { store as commonStore } from 'common'
@@ -10,6 +12,16 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter).use(ElementUI);
 
 Vue.config.productionTip = false;
+
+// 全局注册 Web Components 按钮组件
+try {
+  const { registerButton } = require('@qiankun-admin/ui');
+  registerButton('qk-button');
+  console.log('[child-vue2] Web Components 按钮组件已全局注册');
+} catch (error) {
+  console.error('[child-vue2] 注册 Web Components 按钮组件失败:', error);
+}
+
 let instance = null;
 
 function render(props = {}) {

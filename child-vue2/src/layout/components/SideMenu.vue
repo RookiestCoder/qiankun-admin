@@ -46,6 +46,7 @@ export default {
   data() {
     return {
       routes: [
+        { name: 'Web Components 案例', path: '/web-components-demo', icon: 'el-icon-cpu' },
         { name: '修改全局参数', path: '/changeGlobalStore', icon: 'el-icon-edit' },
         { name: '跳转子应用', path: '/junpSubImp', icon: 'el-icon-position' },
         { name: 'About Vue', path: '/about', icon: 'el-icon-info' },

@@ -1,0 +1,174 @@
+.qk-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #606266;
+  background-color: #ffffff;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  outline: none;
+  user-select: none;
+}
+
+.qk-button:hover:not(.qk-button--disabled):not(:disabled) {
+  color: #409eff;
+  border-color: #c6e2ff;
+  background-color: #ecf5ff;
+}
+
+.qk-button:active:not(.qk-button--disabled):not(:disabled) {
+  color: #3a8ee6;
+  border-color: #3a8ee6;
+}
+
+.qk-button--disabled,
+.qk-button:disabled {
+  color: #c0c4cc;
+  cursor: not-allowed;
+  background-color: #ffffff;
+  border-color: #e4e7ed;
+}
+
+/* 尺寸 */
+.qk-button--small {
+  padding: 0 12px;
+  font-size: 12px;
+  height: 28px;
+}
+
+.qk-button--medium {
+  padding: 0 16px;
+  font-size: 14px;
+  height: 36px;
+}
+
+.qk-button--large {
+  padding: 0 20px;
+  font-size: 16px;
+  height: 44px;
+}
+
+/* 类型 */
+.qk-button--primary {
+  color: #ffffff;
+  background-color: #409eff;
+  border-color: #409eff;
+}
+
+.qk-button--primary:hover:not(.qk-button--disabled):not(:disabled) {
+  background-color: #66b1ff;
+  border-color: #66b1ff;
+}
+
+.qk-button--primary:active:not(.qk-button--disabled):not(:disabled) {
+  background-color: #3a8ee6;
+  border-color: #3a8ee6;
+}
+
+.qk-button--success {
+  color: #ffffff;
+  background-color: #67c23a;
+  border-color: #67c23a;
+}
+
+.qk-button--success:hover:not(.qk-button--disabled):not(:disabled) {
+  background-color: #85ce61;
+  border-color: #85ce61;
+}
+
+.qk-button--success:active:not(.qk-button--disabled):not(:disabled) {
+  background-color: #5daf34;
+  border-color: #5daf34;
+}
+
+.qk-button--warning {
+  color: #ffffff;
+  background-color: #e6a23c;
+  border-color: #e6a23c;
+}
+
+.qk-button--warning:hover:not(.qk-button--disabled):not(:disabled) {
+  background-color: #ebb563;
+  border-color: #ebb563;
+}
+
+.qk-button--warning:active:not(.qk-button--disabled):not(:disabled) {
+  background-color: #cf9236;
+  border-color: #cf9236;
+}
+
+.qk-button--danger {
+  color: #ffffff;
+  background-color: #f56c6c;
+  border-color: #f56c6c;
+}
+
+.qk-button--danger:hover:not(.qk-button--disabled):not(:disabled) {
+  background-color: #f78989;
+  border-color: #f78989;
+}
+
+.qk-button--danger:active:not(.qk-button--disabled):not(:disabled) {
+  background-color: #dd6161;
+  border-color: #dd6161;
+}
+
+.qk-button--info {
+  color: #ffffff;
+  background-color: #909399;
+  border-color: #909399;
+}
+
+.qk-button--info:hover:not(.qk-button--disabled):not(:disabled) {
+  background-color: #a6a9ad;
+  border-color: #a6a9ad;
+}
+
+.qk-button--info:active:not(.qk-button--disabled):not(:disabled) {
+  background-color: #82848a;
+  border-color: #82848a;
+}
+
+/* 加载状态 */
+.qk-button--loading {
+  pointer-events: none;
+}
+
+.qk-button__loading {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 4px;
+}
+
+.qk-button__spinner {
+  width: 14px;
+  height: 14px;
+  animation: qk-button-spin 1s linear infinite;
+}
+
+.qk-button__spinner-circle {
+  stroke-dasharray: 90, 150;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+}
+
+@keyframes qk-button-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.qk-button__content {
+  display: inline-flex;
+  align-items: center;
+}

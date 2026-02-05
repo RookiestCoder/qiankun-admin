@@ -2,7 +2,7 @@
   "name": "@qiankun-admin/ui",
   "version": "1.0.0",
   "description": "微前端公共 UI 组件模块",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "source": "src/index.ts",
@@ -11,8 +11,8 @@
     "src"
   ],
   "scripts": {
-    "build": "tsc",
-    "build:watch": "tsc --watch",
+    "build": "vite build && tsc",
+    "build:watch": "vite build --watch",
     "type-check": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
@@ -23,7 +23,12 @@
   ],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "vue": "^3.3.4"
+  },
   "devDependencies": {
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "@vitejs/plugin-vue": "^4.5.0",
+    "vite": "^4.5.0"
   }
 }
