@@ -6,14 +6,14 @@
 
 ```
 qiankun-admin/
-├── main/                    # 主基座应用 (Vue3 + qiankun)
-├── sub-vue/                 # 子应用 Vue (Vue2 + JavaScript)
-├── sub-react/               # 子应用 React (React18 + TypeScript)
-├── sub-html/                # 子应用 HTML (纯HTML)
+├── base-vue3/              # 主基座应用 (Vue3 + qiankun)
+├── child-vue2/             # 子应用 Vue (Vue2 + JavaScript)
+├── child-vite-react/       # 子应用 React (React18 + TypeScript)
+├── child-html/             # 子应用 HTML (纯HTML)
 ├── packages/                # 共享包
 │   ├── shared/             # 公共工具库
 │   ├── theme/              # 主题配置
-│   └── ui/                 # UI组件库
+│   └── ui/                 # UI组件库 (Web Components)
 ├── pnpm-workspace.yaml     # pnpm 工作区 + Catalog 配置
 ├── package.json            # 根目录脚本和依赖管理
 └── README.md               # 项目说明文档
@@ -21,10 +21,10 @@ qiankun-admin/
 
 ## 🏗️ 技术栈
 
-### 主基座 (main)
-- **构建工具**: Vue CLI 5.0.9 + Webpack 5.90.0
+### 主基座 (base-vue3)
+- **构建工具**: Vue CLI 5.0.0 + Webpack 5
 - **前端框架**: Vue 3.2.13 + TypeScript 4.5.5
-- **微前端框架**: qiankun 2.6.3
+- **微前端框架**: qiankun 2.10.16
 - **UI框架**: Element Plus 2.5.0
 - **状态管理**: Pinia 2.1.7 + Vuex 4.0.0
 - **路由**: Vue Router 4.3.0
@@ -32,7 +32,7 @@ qiankun-admin/
 - **HTTP客户端**: Axios 1.6.5
 - **开发端口**: 5500
 
-### 子应用 Vue (sub-vue)
+### 子应用 Vue (child-vue2)
 - **构建工具**: Vue CLI 5.0.0 + Webpack 5
 - **前端框架**: Vue 2.6.14 + JavaScript
 - **UI框架**: Element UI 2.15.14
@@ -41,29 +41,31 @@ qiankun-admin/
 - **样式**: Less 4.1.2
 - **共享依赖**: @qiankun-admin/shared, @qiankun-admin/theme, @qiankun-admin/ui
 
-### 子应用 React (sub-react)
-- **构建工具**: Vite 5.4.10
-- **前端框架**: React 18.3.1 + TypeScript 5.6.2
-- **代码检查**: ESLint 9.15.0
-- **React插件**: @vitejs/plugin-react 4.3.4
-- **类型定义**: @types/react 18.3.12, @types/react-dom 18.3.7
+### 子应用 React (child-vite-react)
+- **构建工具**: Vite 3.1.0
+- **前端框架**: React 18.2.0 + TypeScript 4.6.4
+- **UI框架**: Ant Design 4.23.4
+- **状态管理**: Redux Toolkit 1.8.5
+- **路由**: React Router 6.4.1
+- **微前端插件**: vite-plugin-qiankun 1.0.15
+- **开发端口**: 5503
 
-### 子应用 HTML (sub-html)
+### 子应用 HTML (child-html)
 - **技术栈**: 原生 HTML + JavaScript
 - **开发服务器**: http-server 13.0.0
 - **跨域支持**: CORS
-- **开发端口**: 5504
+- **开发端口**: 5509
 
 ### 共享包 (packages)
-- **shared**: 公共工具库 (TypeScript 5.0.0 + qiankun 2.6.3)
-- **theme**: 主题配置模块 (TypeScript 5.0.0)
-- **ui**: UI组件库 (TypeScript 5.0.0)
+- **shared**: 公共工具库 (TypeScript 5.6.2 + qiankun 2.10.16)
+- **theme**: 主题配置模块 (TypeScript 5.6.2)
+- **ui**: UI组件库 (TypeScript 5.6.2 + Vue 3 + Web Components)
 
 ## 🚀 快速开始
 
 ### 环境要求
-- Node.js >= 20.0.0
-- pnpm >= 9.0.0 (支持 Catalog 依赖管理)
+- Node.js >= 18.0.0
+- pnpm >= 8.0.0 (支持 Catalog 依赖管理)
 
 ### 安装依赖
 ```bash
@@ -71,36 +73,82 @@ qiankun-admin/
 pnpm install
 ```
 
+## 🔧 开发命令
+
+### 根目录统一命令 (推荐)
+
+```bash
+# 开发环境
+pnpm dev                      # 并行启动所有应用
+pnpm dev:base-vue3           # 主基座
+pnpm dev:child-vue2          # Vue子应用
+pnpm dev:child-vite-react    # React子应用
+pnpm dev:child-html          # HTML子应用
+
+# 代码质量
+pnpm lint                    # ESLint检查
+pnpm type-check             # TypeScript类型检查
+pnpm format                 # Prettier格式化
+pnpm format:check           # 检查格式化
+
+# 构建
+pnpm build                  # 构建所有项目
+pnpm build:packages         # 只构建共享包
+pnpm build:base-vue3       # 构建主基座
+pnpm build:child-vue2      # 构建Vue子应用
+pnpm build:child-vite-react # 构建React子应用
+pnpm build:child-html      # 构建HTML子应用
+
+# Git提交
+pnpm commit                 # 交互式提交 (推荐)
+
+# 清理
+pnpm clean                  # 清理所有node_modules和dist
+pnpm clean:packages         # 只清理共享包
+```
+
+### 各项目独立命令
+
+| 项目 | 开发启动 | 构建 | 代码检查 | 预览 |
+|------|----------|------|----------|------|
+| base-vue3 | `cd base-vue3 && pnpm run serve` | `pnpm run build` | - | - |
+| child-vue2 | `cd child-vue2 && pnpm run serve` | `pnpm run build` | - | - |
+| child-vite-react | `cd child-vite-react && pnpm run serve` | `pnpm run build` | - | `pnpm run preview` |
+| child-html | `cd child-html && pnpm run serve` | `pnpm run build` | - | - |
+| shared | - | `pnpm run build` | `pnpm run type-check` | - |
+| theme | - | `pnpm run build` | `pnpm run type-check` | - |
+| ui | - | `pnpm run build` | `pnpm run type-check` | - |
+
 ### 启动应用
 
 #### 方式1：分别启动各个应用
 ```bash
 # 1. 启动主基座 (端口: 5500)
-cd main && pnpm run serve
+cd base-vue3 && pnpm run serve
 
-# 2. 启动 Vue 子应用 (端口: 8080)
-cd sub-vue && pnpm run serve
+# 2. 启动 Vue 子应用 (默认端口: 8080)
+cd child-vue2 && pnpm run serve
 
-# 3. 启动 React 子应用 (端口: 3000)
-cd sub-react && pnpm run dev
+# 3. 启动 React 子应用 (端口: 5503)
+cd child-vite-react && pnpm run serve
 
-# 4. 启动 HTML 子应用 (端口: 5504)
-cd sub-html && pnpm run serve
+# 4. 启动 HTML 子应用 (端口: 5509)
+cd child-html && pnpm run serve
 ```
 
 ### 构建应用
 ```bash
 # 构建主基座
-cd main && pnpm run build
+cd base-vue3 && pnpm run build
 
 # 构建 Vue 子应用
-cd sub-vue && pnpm run build
+cd child-vue2 && pnpm run build
 
 # 构建 React 子应用
-cd sub-react && pnpm run build
+cd child-vite-react && pnpm run build
 
 # 构建 HTML 子应用
-cd sub-html && pnpm run build
+cd child-html && pnpm run build
 ```
 
 ### 构建共享包
@@ -114,58 +162,12 @@ pnpm --filter @qiankun-admin/theme run build
 pnpm --filter @qiankun-admin/ui run build
 ```
 
-## 🔧 开发命令
-
-### 根目录统一命令 (推荐)
-
-```bash
-# 开发环境
-pnpm dev                    # 并行启动所有应用
-pnpm dev:main              # 主基座
-pnpm dev:sub-vue           # Vue子应用
-pnpm dev:sub-react         # React子应用
-pnpm dev:sub-html          # HTML子应用
-
-# 代码质量
-pnpm lint                  # ESLint检查
-pnpm type-check           # TypeScript类型检查
-pnpm format               # Prettier格式化
-pnpm format:check         # 检查格式化
-
-# 构建
-pnpm build                # 构建所有项目
-pnpm build:packages       # 只构建共享包
-pnpm build:main           # 构建主基座
-pnpm build:sub-vue        # 构建Vue子应用
-pnpm build:sub-react      # 构建React子应用
-pnpm build:sub-html       # 构建HTML子应用
-
-# Git提交
-pnpm commit               # 交互式提交 (推荐)
-
-# 清理
-pnpm clean                # 清理所有node_modules和dist
-pnpm clean:packages       # 只清理共享包
-```
-
-### 各项目独立命令
-
-| 项目 | 开发启动 | 构建 | 代码检查 | 预览 |
-|------|----------|------|----------|------|
-| main | `cd main && pnpm run serve` | `pnpm run build` | - | - |
-| sub-vue | `cd sub-vue && pnpm run serve` | `pnpm run build` | - | - |
-| sub-react | `cd sub-react && pnpm run dev` | `pnpm run build` | `pnpm run lint` | `pnpm run preview` |
-| sub-html | `cd sub-html && pnpm run serve` | `pnpm run build` | - | - |
-| shared | - | `pnpm run build` | `pnpm run type-check` | - |
-| theme | - | `pnpm run build` | `pnpm run type-check` | - |
-| ui | - | `pnpm run build` | `pnpm run type-check` | - |
-
 ## 🌐 访问地址
 
 - **主基座**: http://localhost:5500
-- **Vue子应用**: http://localhost:8080 (独立访问)
-- **React子应用**: http://localhost:3000 (独立访问)
-- **HTML子应用**: http://localhost:5504 (独立访问)
+- **Vue子应用**: http://localhost:8080 (独立访问，默认端口)
+- **React子应用**: http://localhost:5503 (独立访问)
+- **HTML子应用**: http://localhost:5509 (独立访问)
 
 ## 📦 共享包管理
 
@@ -177,13 +179,21 @@ pnpm clean:packages       # 只清理共享包
 # pnpm-workspace.yaml
 catalog:
   # 微前端框架
-  qiankun: ^2.6.3
+  qiankun: ^2.10.16
   # TypeScript 相关
   typescript: ^5.6.2
   # Vue 相关
   vue: ^3.2.13
+  vue-router: ^4.3.0
+  vuex: ^4.0.0
+  pinia: ^2.1.7
   # React 相关
   react: ^18.3.1
+  react-dom: ^18.3.1
+  # Vite 相关
+  vite: ^5.4.10
+  # UI 框架
+  element-plus: ^2.5.0
   # 等等...
 ```
 
@@ -226,9 +236,81 @@ catalog:
 - 支持暗色模式
 
 #### ui 包
-- 公共UI组件库
-- 跨框架组件抽象
-- 设计系统实现
+- **Web Components 组件库**: 基于 Vue 3 + TypeScript 构建的 Web Components
+- **跨框架支持**: 可在 Vue2、Vue3、React 等任何框架中使用
+- **技术实现**: 使用 Vue 3 的 `defineCustomElement` API 将 Vue 组件转换为标准 Web Components
+- **样式隔离**: 通过 Shadow DOM 实现样式隔离，避免样式冲突
+- **当前组件**: `qk-button` 按钮组件
+
+##### Web Components 使用示例
+
+**在 Vue 2 子应用中使用** (`child-vue2`):
+
+```javascript
+// main.js - 全局注册（使用 require，因为 Webpack 环境）
+const { registerButton } = require('@qiankun-admin/ui');
+registerButton('qk-button');
+
+// vue.config.js - 配置 Vue 2 识别自定义元素
+module.exports = {
+  chainWebpack: (config) => {
+    config.module
+      .rule('vue')
+      .use('vue-loader')
+      .tap((options) => ({
+        ...options,
+        compilerOptions: {
+          isCustomElement: (tag) => tag.startsWith('qk-'),
+        },
+      }));
+  },
+};
+
+// 组件中使用
+<template>
+  <qk-button type="primary" @click="handleClick">
+    点击按钮
+  </qk-button>
+</template>
+```
+
+**在 React 子应用中使用** (`child-vite-react`):
+
+```tsx
+// main.tsx - 全局注册
+import { registerButton } from '@qiankun-admin/ui';
+registerButton('qk-button');
+
+// 组件中使用
+function App() {
+  return (
+    <qk-button type="primary" onClick={handleClick}>
+      点击按钮
+    </qk-button>
+  );
+}
+```
+
+**组件属性**:
+- `type`: 按钮类型 (`primary` | `success` | `warning` | `danger` | `info` | `default`)
+- `size`: 按钮尺寸 (`small` | `medium` | `large`)
+- `disabled`: 是否禁用
+- `loading`: 是否加载中
+- `@click` / `onClick`: 点击事件
+
+**构建产物**:
+- `index.cjs.js`: CommonJS 格式（用于 Webpack 项目，如 Vue CLI）
+- `index.esm.js`: ES Module 格式（用于 Vite 项目）
+- `index.iife.js`: IIFE 格式（用于浏览器直接引入）
+- `index.d.ts`: TypeScript 类型定义
+
+**技术优势**:
+- ✅ **真正的跨框架**: 基于 Web 标准，可在任何框架中使用
+- ✅ **样式隔离**: Shadow DOM 确保样式不会泄露或冲突
+- ✅ **生命周期管理**: 自动处理组件的挂载和卸载
+- ✅ **事件系统**: 支持原生 DOM 事件，兼容各框架的事件系统
+- ✅ **类型安全**: 提供完整的 TypeScript 类型定义
+- ✅ **零依赖**: 构建后的组件包含 Vue 3 运行时，无需额外依赖
 
 ## 🛠️ 开发工具链
 
@@ -287,6 +369,7 @@ git commit -m "feat: 添加新功能"
 3. **资源隔离**: JS沙箱、样式隔离、路由隔离
 4. **共享复用**: 公共模块提取复用
 5. **渐进升级**: 可逐步迁移老应用
+6. **跨框架组件**: 通过 Web Components 实现真正的跨框架组件复用
 
 ### Monorepo 优势
 1. **统一依赖管理**: 通过 pnpm catalog 统一管理依赖版本
