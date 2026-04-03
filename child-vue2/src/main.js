@@ -6,6 +6,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 // import '@qiankun-admin/ui/dist/style.css';
 import App from './App.vue';
 import routes from './router';
+import { applyChildRouteGuards } from './router/routeGuards';
 // import { store as commonStore } from 'common'
 import store from './store';
 import VueRouter from 'vue-router';
@@ -32,16 +33,8 @@ function render(props = {}) {
     mode: 'history',
     routes,
   });
-  router.beforeEach((to, from, next) => {
-    //每次跳转前将路由加到面包屑数组
-    store.commit('addBreadcrumb', {
-      label: to.name,
-      path: to.fullPath,
-    });
-    //修改当前路由
-    store.commit('changeCurrentPath', to.fullPath);
-    next();
-  });
+
+  applyChildRouteGuards(router, store, 'child-vue2');
 
   instance = new Vue({
     router,
@@ -65,8 +58,16 @@ export async function bootstrap() {
 
 export async function mount(props) {
   console.log('[vue] props from main framework', props);
-  //   commonStore.globalRegister(store, props)
-  //在这里可以把子应用的store数据初始化
+
+  if (typeof props.getMainAuth === 'function') {
+    const mainAuth = props.getMainAuth();
+    console.log('[child-vue2] 主应用 Pinia 下发的鉴权快照:', mainAuth);
+    console.log('[child-vue2] token:', mainAuth?.token);
+    console.log('[child-vue2] permissions:', mainAuth?.permissions);
+  } else {
+    console.warn('[child-vue2] props 中未提供 getMainAuth，跳过鉴权打印');
+  }
+
   props.onGlobalStateChange((state, prev) => {
     console.log('[vue] 收到主应用消息变更:', state);
   });

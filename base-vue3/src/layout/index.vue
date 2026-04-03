@@ -57,16 +57,15 @@
 </template>
 <script setup lang="ts">
 import { Avatar, HomeFilled, Clock, SwitchButton } from '@element-plus/icons-vue';
-import { computed, onMounted, ref, watch } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import microApps from '../../micro-app';
 import { useRoute, useRouter } from 'vue-router';
-import router from '../router';
 import chooseChild from './components/chooseChild.vue';
 import childWrap from './components/childWrap.vue';
-import { registerMicroApps, start, setDefaultMountApp } from 'qiankun';
-import { useUserStore } from '..//store/index';
+import { useUserStore } from '../store/index';
 
 const userStore = useUserStore();
+const router = useRouter();
 
 // 监听路由变化，当有microApps中的baseurl时，隐藏选择框
 const route = useRoute();
@@ -80,10 +79,10 @@ const current = ref('/child-vue2');
 //是否显示首页选择框
 const mainChoiceVisiable = ref(true);
 
-function goto(item) {
-  this.mainChoiceVisiable = false;
-  this.current = item.activeRule;
-  history.pushState(null, item.activeRule, item.activeRule);
+function goto(item: { activeRule: string }) {
+  mainChoiceVisiable.value = false;
+  current.value = item.activeRule;
+  router.push(item.activeRule);
 }
 
 // 使用 ref 创建响应式数据
@@ -104,10 +103,10 @@ const weekDate = computed(() => {
   return currentDay;
 });
 
-//退出登陆
+// 退出登录：清空基座鉴权并回到登录页
 function handleQuit() {
-  history.pushState(null, 'login', 'login');
-  // router.push('/login')
+  userStore.clearAuth();
+  router.push('/login');
 }
 
 onMounted(() => {});

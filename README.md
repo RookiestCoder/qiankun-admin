@@ -65,13 +65,31 @@ qiankun-admin/
 
 ### 环境要求
 - Node.js >= 18.0.0
-- pnpm >= 8.0.0 (支持 Catalog 依赖管理)
+- pnpm >= 9.5.0（Workspace Catalogs / `catalog:` 自 [pnpm 9.5](https://github.com/pnpm/pnpm/releases/tag/v9.5.0) 起支持，低于该版本无法安装本仓库）
 
 ### 安装依赖
 ```bash
-# 安装所有依赖
+# 在仓库根目录安装所有依赖（workspace + catalog）
 pnpm install
 ```
+
+### 首次克隆 / 拉代码后的推荐流程
+
+本地刚拿到仓库时，请按下面顺序操作（**不要**在 `pnpm install` 之前构建 `packages`，因为需要先安装依赖才能执行 `tsc` 等构建命令）：
+
+1. **`pnpm install`**（必须在**仓库根目录**执行）  
+   - 安装 monorepo 全部依赖，并正确链接 `workspace:*` 的 `@qiankun-admin/*`。  
+   - 仅单独在某个子目录用 `npm install` 无法解析这些本地包。
+
+2. **`pnpm build:packages`**（构建 `packages/shared`、`packages/theme`、`packages/ui`）  
+   - 这些包的 `package.json` 中入口指向 **`dist/`**（如 `main: "dist/index.js"`），未执行构建时 `dist` 不存在，子应用在开发时引用 `@qiankun-admin/shared` 等可能报错或无法解析。  
+   - 修改共享包源码后，需重新构建对应包，或对单个包使用其 `package.json` 中的 `build:watch`（若已配置）。
+
+3. **启动应用**  
+   - 根目录：`pnpm dev` 或 `pnpm dev:base-vue3` 等；或进入子项目执行 `pnpm run serve`。  
+   - 根目录的 `pnpm build` 会先执行 `build:packages` 再构建各应用；日常开发在步骤 1、2 完成后即可跑本地调试。
+
+**小结**：顺序是 **`pnpm install` → `pnpm build:packages` → 再启动各应用**，而不是先打包再 install。
 
 ## 🔧 开发命令
 
@@ -79,32 +97,32 @@ pnpm install
 
 ```bash
 # 开发环境
-pnpm dev                      # 并行启动所有应用
-pnpm dev:base-vue3           # 主基座
-pnpm dev:child-vue2          # Vue子应用
-pnpm dev:child-vite-react    # React子应用
-pnpm dev:child-html          # HTML子应用
+npm dev                      # 并行启动所有应用
+npm dev:base-vue3           # 主基座
+npm dev:child-vue2          # Vue子应用
+npm dev:child-vite-react    # React子应用
+npm dev:child-html          # HTML子应用
 
 # 代码质量
-pnpm lint                    # ESLint检查
-pnpm type-check             # TypeScript类型检查
-pnpm format                 # Prettier格式化
-pnpm format:check           # 检查格式化
+npm lint                    # ESLint检查
+npm type-check             # TypeScript类型检查
+npm format                 # Prettier格式化
+npm format:check           # 检查格式化
 
 # 构建
-pnpm build                  # 构建所有项目
-pnpm build:packages         # 只构建共享包
-pnpm build:base-vue3       # 构建主基座
-pnpm build:child-vue2      # 构建Vue子应用
-pnpm build:child-vite-react # 构建React子应用
-pnpm build:child-html      # 构建HTML子应用
+npm build                  # 构建所有项目
+npm build:packages         # 只构建共享包
+npm build:base-vue3       # 构建主基座
+npm build:child-vue2      # 构建Vue子应用
+npm build:child-vite-react # 构建React子应用
+npm build:child-html      # 构建HTML子应用
 
 # Git提交
-pnpm commit                 # 交互式提交 (推荐)
+npm commit                 # 交互式提交 (推荐)
 
 # 清理
-pnpm clean                  # 清理所有node_modules和dist
-pnpm clean:packages         # 只清理共享包
+npm clean                  # 清理所有node_modules和dist
+npm clean:packages         # 只清理共享包
 ```
 
 ### 各项目独立命令
@@ -173,7 +191,7 @@ pnpm --filter @qiankun-admin/ui run build
 
 ### Catalog 依赖管理
 
-项目使用 **pnpm catalog** 功能统一管理共享依赖版本，避免版本冲突和重复定义：
+项目使用 **pnpm catalog** 统一管理共享依赖版本，避免版本冲突和重复定义。**请使用 pnpm >= 9.5.0**，否则无法识别 `catalog:` 协议（该能力在 pnpm 9.5 引入）。
 
 ```yaml
 # pnpm-workspace.yaml

@@ -57,15 +57,16 @@
 
 <script setup lang="ts">
 import { User, View, Hide, Lock } from '@element-plus/icons-vue';
-import { useSettingsStore, useUserStore } from '../../store/index';
-import { computed, onMounted, ref } from 'vue';
-import router from '../../router';
+import { useUserStore } from '../../store/index';
+import type { FormInstance } from 'element-plus';
+import { computed, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-// const userStore = useUserStore();
-// const settingsStore = useSettingsStore();
+const router = useRouter();
+const userStore = useUserStore();
 
-const passwordVisible = ref(false); // 密码是否可见
-const loginFormRef = ref(null); // 登录表单ref
+const passwordVisible = ref(false);
+const loginFormRef = ref<FormInstance>();
 
 const loginData = ref({
   username: 'admin',
@@ -100,18 +101,36 @@ const loginRules = computed(() => {
 });
 
 /**
- * 登录
+ * 登录：模拟请求后端，写入 token 与权限到基座 Pinia，再进入主布局
  */
-function handleLogin() {
-  loginFormRef.value.validate(valid => {
-    if (valid) {
-      history.pushState(null, '/', '/'); // 没引入路由，所以不能用路由切换
-      // router.push({ path: "/child-vue2/about" });
-    }
-  });
-}
+async function handleLogin() {
+  const form = loginFormRef.value;
+  if (!form) return;
+  try {
+    await form.validate();
+  } catch {
+    return;
+  }
 
-onMounted(() => {});
+  await new Promise<void>(resolve => setTimeout(resolve, 300));
+
+  const mockToken = `mock-jwt.${btoa(JSON.stringify({ sub: loginData.value.username, exp: Date.now() + 3600_000 }))}`;
+  const mockPermissions = [
+    'user:list',
+    'user:edit',
+    'order:view',
+    'dashboard:read',
+    'child-vue2:access',
+  ];
+
+  userStore.setLoginState({
+    token: mockToken,
+    permissions: mockPermissions,
+    displayName: loginData.value.username,
+  });
+
+  await router.replace('/');
+}
 </script>
 
 <style lang="less" scoped>

@@ -24,7 +24,7 @@
     "less-loader": "catalog:",
     "sass": "catalog:",
     "sass-loader": "catalog:",
-    "typescript": "~4.5.5"
+    "typescript": "catalog:"
   },
   "browserslist": [
     "> 1%",

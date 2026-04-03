@@ -67,7 +67,9 @@ import { reactive, toRefs, onBeforeMount, onMounted, ref, watch } from 'vue';
 import microApps from '../../../micro-app';
 import { registerMicroApps, start, setDefaultMountApp } from 'qiankun';
 import { useRouteInfoStore } from '../../store/index';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const routeInfo = useRouteInfoStore();
 const watchedValue1 = ref(routeInfo.currentSub);
 const watchedValue2 = ref(routeInfo.currentPath);
@@ -134,8 +136,8 @@ onMounted(() => {
   start();
 });
 
-function goto(item) {
-  history.pushState(null, item.activeRule, item.activeRule);
+function goto(item: { activeRule: string }) {
+  router.push(item.activeRule);
 }
 
 // 点击处理，添加波纹效果

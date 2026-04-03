@@ -1,4 +1,6 @@
 import { globalState } from './src/qiankun/globalState';
+import { pinia } from './src/store/index';
+import { useUserStore } from './src/store/modules/user';
 
 const microApps = [
   {
@@ -48,8 +50,16 @@ const apps = microApps.map(item => {
     container: '#subapp-viewport', // 子应用挂载的div
     // container: '#subapp-viewport', // 子应用挂载的div
     props: {
-      routerBase: item.activeRule, // 下发基础路由
-      globalState: globalState, //全局数据
+      routerBase: item.activeRule,
+      globalState: globalState,
+      /** 子应用 mount 时调用，读取基座 Pinia 中最新的 token 与权限 */
+      getMainAuth: () => {
+        const user = useUserStore(pinia);
+        return {
+          token: user.token,
+          permissions: [...user.permissions],
+        };
+      },
     },
   };
 });

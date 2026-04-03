@@ -1,20 +1,12 @@
 <template>
   <div id="main">
-    <router-view v-if="$route.meta.isMainSinglePage"></router-view>
-    <layout v-else></layout>
+    <router-view />
   </div>
 </template>
 
 <script>
-import layout from './layout/index.vue';
 export default {
-  name: 'main',
-  components: { layout },
-  data() {
-    return {};
-  },
-  methods: {},
-  created() {},
+  name: 'App',
 };
 </script>
 
